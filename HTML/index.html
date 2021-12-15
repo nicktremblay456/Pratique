@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<HTML language="english">
+<head>
+	<center>
+		<h1><u>Click the button</u></h1>
+		<hr>
+			<button onclick="displayMessage()"> Click Here </button>
+			<!--<form method="post">
+				<input type="submit" name="button1"
+				class="button" value="Button1"/>
+				<input type="submit" name="button2"
+				class="button" value="Button2"/>
+			</form>-->
+			<div id="kekw" style="display: none;">
+				<center><h1> (☞ﾟヮﾟ)☞ Wow get a life L nerd ☜(ﾟヮﾟ☜) </h1></center>
+				<img src="kekw.gif"/>
+			</div>
+		</hr>
+	</center>
+</head>
+
+<body>
+	<script>
+	function displayMessage(){
+		var x = document.getElementById("kekw");
+		if (x.style.display === "none"){
+			x.style.display = "block";
+		}else{
+			x.style.display = "none";
+		}
+	}
+	</script>
+
+	<?php
+	if(array_key_exists('button1', $_POST)){
+		button1();
+	}
+	else if(array_key_exists('button2', $_POST)) {
+		button2();
+	}
+	function button1() {
+		echo "Button1 Selected";
+	}
+	function button2() {
+		echo "Button2 Selected";
+	}
+	?>
+
+	<style>
+		body {
+			background-color:black;
+		}
+
+		h1 {
+			color:red;
+		}
+
+		button {
+			border: solid;
+			border-color:red;
+			color:red;
+			background-color:green;
+			border-radius: 50%;
+			width: 100px;
+			height:100px;
+		}
+	</style>
+</body>
+<footer>
+	<center><h1>༼ ºل͟º ༼ ºل͟º ༼ ºل͟º ༽ ºل͟º ༽ ºل͟º ༽</h1></center>
+</footer>
+</HTML>

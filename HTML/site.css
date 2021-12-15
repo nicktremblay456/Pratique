@@ -1,0 +1,17 @@
+body {
+    background-color:black;
+}
+
+h1 {
+    color:red;
+}
+
+button {
+    border: solid;
+    border-color:red;
+    color:red;
+    background-color:green;
+    border-radius: 50%;
+    width: 100px;
+    height:100px;
+}

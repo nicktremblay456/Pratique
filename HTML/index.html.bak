@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<HTML>
+<head>
+	<center>
+		<h1><u>Nick</u></h1>
+		<button onclick="test(hello)">TEST</button>
+	</center>
+</head>
+
+<body>
+	<script>
+	var hello = "Javascript log";
+	function test(text){
+		document.write(text);
+	}
+	</script>
+
+	<?php
+	$hello = "Hello World!";
+	function test($text)
+	{
+		echo $text;
+	}
+	
+	test($hello);
+	?>
+</body>
+
+</HTML>
