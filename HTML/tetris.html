@@ -19,9 +19,49 @@
   canvas {
     border: 1px solid white;
   }
+
+  h1{
+    color: white;
+  }
+
+  .border-glow {
+    border: 1px solid blue;
+    animation: 4s infinite glow;
+  }
+  @keyframes glow {
+      0% {
+          border-color: red;
+      }
+      25% {
+          border-color: blue;
+      }
+      75% {
+          border-color: yellow;
+      }
+      100% {
+          border-color: purple;
+      }
+  }
+  @-webkit-keyframes glow {
+      0% {
+          border-color: red;
+      }
+      25% {
+          border-color: blue;
+      }
+      75% {
+          border-color: yellow;
+      }
+      100% {
+          border-color: purple;
+      }
+  }
   </style>
 </head>
 <body>
+<div class="border-glow" horizontal layout>
+<h1 id="score" class="border-glow" style="position: absolute; top: 0px; left: 250px; margin-right: 25px; ">Score: </h1>
+<h1 id="level" class="border-glow" style="position: absolute; top: 50px; left: 250px; margin-right: 25px; ">Level: </h1>
 <canvas width="320" height="640" id="game"></canvas>
 <script>
 // https://tetris.fandom.com/wiki/Tetris_Guideline
@@ -226,6 +266,16 @@ let count = 0;
 let tetromino = getNextTetromino();
 let rAF = null;  // keep track of the animation frame so we can cancel it
 let gameOver = false;
+let score = 0;
+let level = 1;
+
+function gameScore(){
+
+}
+
+function gameLevel(){
+  
+}
 
 // game loop
 function loop() {
@@ -315,5 +365,6 @@ document.addEventListener('keydown', function(e) {
 // start the game
 rAF = requestAnimationFrame(loop);
 </script>
+</div>
 </body>
 </html>

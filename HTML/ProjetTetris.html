@@ -20,17 +20,50 @@
                 border: 1px solid white;
             }
 
-            label{
+            h1{
                 color: white;
-                border: 1px solid white;
+                border: 5px solid white;
+            }
+
+            .border-glow {
+            border: 1px solid blue;
+            animation: 4s infinite glow;
+            }
+            @keyframes glow {
+                0% {
+                    border-color: red;
+                }
+                25% {
+                    border-color: blue;
+                }
+                75% {
+                    border-color: yellow;
+                }
+                100% {
+                    border-color: purple;
+                }
+            }
+            @-webkit-keyframes glow {
+                0% {
+                    border-color: red;
+                }
+                25% {
+                    border-color: blue;
+                }
+                75% {
+                    border-color: yellow;
+                }
+                100% {
+                    border-color: purple;
+                }
             }
         </style>
     </head>
 
     <body>
-        <div horizontal layout>
-        <label style="position: absolute; top: 0px; left: 350px; margin-right: 25px; display: flex; ">Score: </label>
-        <label style="position: absolute; top: 0px; right: 350px; margin-right: 25px; display: flex; ">Level: </label>
+        <div class="border-glow" horizontal layout>
+        <h1 class="border-glow" style="position: absolute; top: 0px; left: 250px; margin-right: 25px; ">Score: </h1>
+        <h1 class="border-glow" style="position: absolute; top: 50px; left: 250px; margin-right: 25px; ">Level: </h1>
         <canvas width="320" height="640" id="game"></canvas>
         <script>
 

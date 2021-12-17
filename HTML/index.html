@@ -6,7 +6,7 @@
 		<hr>
 			<button onclick="displaySection(sectionIds[0])"> Click Here </button>
 			<button onclick="startMatrix()"> Click to enter the matrix </button>
-			<button onlick="displaySection(sectionIds[3])"> Click to play video </button>
+			<button onclick="displaySection(sectionIds[3])"> Click to play video </button>
 			<!--<form method="post">
 				<input type="submit" name="button1"
 				class="button" value="Button1"/>
@@ -15,7 +15,7 @@
 			</form>-->
 			<div id="kekw" style="display: none;">
 				<center><h1> (☞ﾟヮﾟ)☞ Wow get a life L nerd ☜(ﾟヮﾟ☜) </h1></center>
-				<img src="kekw.gif"/>
+				<img width="420" height="315" src="kekw.gif"/>
 			</div>
 			<div id="matrix" style="display:none;">
 				<center><canvas width="500" height="200" id="canv"/></center>
@@ -34,17 +34,16 @@
 	const sectionIds = ["kekw", "matrix", "canv", "video"];
 	function displaySection(elementId){
 		var x = document.getElementById(elementId);
-		console.log(elementId);
+		//console.log(elementId);
 		if (x.style.display === "none"){
 			x.style.display = "block";
 		}else{
 			x.style.display = "none";
-			return;
 		}
 	}
 	function startMatrix(){
 		displaySection(sectionIds[1]);
-		const canvas = document.getElementById(elementId[2]);
+		const canvas = document.getElementById(sectionIds[2]);
 		const ctx = canvas.getContext('2d');
 		const w = canvas.width = document.body.offsetWidth;
 		const h = canvas.height = document.body.offsetHeight;
