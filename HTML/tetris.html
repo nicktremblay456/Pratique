@@ -29,40 +29,40 @@
     animation: 4s infinite glow;
   }
   @keyframes glow {
-      0% {
-          border-color: red;
-      }
-      25% {
-          border-color: blue;
-      }
-      75% {
-          border-color: yellow;
-      }
-      100% {
-          border-color: purple;
-      }
+    0% {
+      border-color: red;
+    }
+    25% {
+      border-color: blue;
+    }
+    75% {
+      border-color: rgb(255, 255, 0);
+    }
+    100% {
+      border-color: purple;
+    }
   }
   @-webkit-keyframes glow {
-      0% {
-          border-color: red;
-      }
-      25% {
-          border-color: blue;
-      }
-      75% {
-          border-color: yellow;
-      }
-      100% {
-          border-color: purple;
-      }
+    0% {
+      border-color: red;
+    }
+    25% {
+      border-color: blue;
+    }
+    75% {
+      border-color: yellow;
+    }
+    100% {
+      border-color: purple;
+    }
   }
   </style>
 </head>
 <body>
 <div class="border-glow" horizontal layout>
-<h1 id="score" class="border-glow" style="position: absolute; top: 0px; left: 250px; margin-right: 25px; ">Score: </h1>
-<h1 id="level" class="border-glow" style="position: absolute; top: 50px; left: 250px; margin-right: 25px; ">Level: </h1>
-<h1 id="lines" class="border-glow" style="position: absolute; top: 100px; left: 250px; margin-right: 25px; ">Lines: </h1>
+<h1 id="score" class="border-glow" style="position: absolute; top: 0px; left: 150px; margin-right: 25px; ">Score: 0</h1>
+<h1 id="level" class="border-glow" style="position: absolute; top: 50px; left: 150px; margin-right: 25px; ">Level: 0</h1>
+<h1 id="lines" class="border-glow" style="position: absolute; top: 100px; left: 150px; margin-right: 25px; ">Lines: 0</h1>
 <canvas width="320" height="640" id="game"></canvas>
 <script>
 // https://tetris.fandom.com/wiki/Tetris_Guideline
@@ -159,15 +159,18 @@ function placeTetromino() {
   }
 
   // check for line clears starting from the bottom and working our way up
+  var combo = 0;
   for (let row = playfield.length - 1; row >= 0; ) {
     if (playfield[row].every(cell => !!cell)) {
-
       // drop every row above this one
       for (let r = row; r >= 0; r--) {
         for (let c = 0; c < playfield[r].length; c++) {
           playfield[r][c] = playfield[r-1][c];
         }
       }
+      console.log(row);
+      linesCleared(row);
+      gameScore();
     }
     else {
       row--;
@@ -269,13 +272,20 @@ let rAF = null;  // keep track of the animation frame so we can cancel it
 let gameOver = false;
 
 let score = 0;
-let level = 1;
+let level = 0;
 let speed = 35;
 let clearedLines = 0;
 
-function gameScore(){
-  score += 10;
-  document.getElementById("score").innerHTML("Score: " + score);
+// Param lines for the total lines cleared after a tetromino landed
+function gameScore(lines = 1){
+  console.log(lines);
+  score += (10 * lines);
+  document.getElementById("score").innerHTML = "Score: " + score;
+}
+
+function linesCleared(){
+  clearedLines++;
+  document.getElementById("lines").innerHTML = "Lines: " + clearedLines;
 }
 
 function gameLevel(){
