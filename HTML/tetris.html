@@ -150,7 +150,7 @@ function placeTetromino() {
 
         // game over if piece has any part offscreen
         if (tetromino.row + row < 0) {
-          return showGameOver();
+          return showEndGame(false);
         }
 
         playfield[tetromino.row + row][tetromino.col + col] = tetromino.name;
@@ -168,7 +168,7 @@ function placeTetromino() {
           playfield[r][c] = playfield[r-1][c];
         }
       }
-      console.log(row);
+      
       linesCleared(row);
       gameScore();
     }
@@ -180,8 +180,8 @@ function placeTetromino() {
   tetromino = getNextTetromino();
 }
 
-// show the game over screen
-function showGameOver() {
+// show the game victory/over screen
+function showEndGame(win) {
   cancelAnimationFrame(rAF);
   gameOver = true;
 
@@ -194,7 +194,7 @@ function showGameOver() {
   context.font = '36px monospace';
   context.textAlign = 'center';
   context.textBaseline = 'middle';
-  context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+  context.fillText(win ? 'VICTORY!' : 'GAME OVER!', canvas.width / 2, canvas.height / 2);
 }
 
 const canvas = document.getElementById('game');
@@ -273,7 +273,7 @@ let gameOver = false;
 
 let score = 0;
 let level = 0;
-let speed = 35;
+let speed = 50;
 let clearedLines = 0;
 
 // Param lines for the total lines cleared after a tetromino landed
@@ -286,10 +286,104 @@ function gameScore(lines = 1){
 function linesCleared(){
   clearedLines++;
   document.getElementById("lines").innerHTML = "Lines: " + clearedLines;
+  gameLevel()
 }
 
 function gameLevel(){
-  
+  switch(clearedLines)
+  {
+    case 10:
+      level = 1;
+      speed = 48;
+      break;
+    case 20:
+      level = 2;
+      speed = 46;
+      break;
+    case 30:
+      level = 3;
+      speed = 44;
+      break;
+    case 40:
+      level = 4;
+      speed = 42;
+      break;
+    case 50:
+      level = 5;
+      speed = 40;
+      break;
+    case 60:
+      level = 6;
+      speed = 38;
+      break;
+    case 70:
+      level = 6;
+      speed = 36;
+      break;
+    case 80:
+      level = 7;
+      speed = 34;
+      break;
+    case 90:
+      level = 8;
+      speed = 32;
+      break;
+    case 100:
+      level = 9;
+      speed = 30;
+      break;
+    case 110:
+      level = 10;
+      speed = 28;
+      break;
+    case 120:
+      level = 11;
+      speed = 26;
+      break;
+    case 130:
+      level = 12;
+      speed = 24;
+      break;
+    case 140:
+      level = 13;
+      speed = 22;
+    case 150:
+      level = 13;
+      speed = 20;
+      break;
+    case 160:
+      level = 14;
+      speed = 18;
+      break;
+    case 170:
+      level = 15;
+      speed = 16;
+      break;
+    case 180:
+      level = 16;
+      speed = 14;
+      break;
+    case 190:
+      level = 17;
+      speed = 12;
+      break;
+    case 200:
+      level = 18;
+      speed = 10;
+      break;
+    case 210:
+      level = 19;
+      speed = 8;
+      break;
+    case 220:
+      level = 20;
+      speed = 5;
+      break;
+    case 230:
+      showEndGame(true);
+  }
+
+  document.getElementById("level").innerHTML = "Level: " + level;
 }
 
 // game loop
