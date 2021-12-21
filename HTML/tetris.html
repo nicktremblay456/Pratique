@@ -168,14 +168,14 @@ function placeTetromino() {
           playfield[r][c] = playfield[r-1][c];
         }
       }
-      
+      combo++;
       linesCleared(row);
-      gameScore();
     }
     else {
       row--;
     }
   }
+  gameScore(combo);
 
   tetromino = getNextTetromino();
 }
@@ -277,7 +277,7 @@ let speed = 50;
 let clearedLines = 0;
 
 // Param lines for the total lines cleared after a tetromino landed
-function gameScore(lines = 1){
+function gameScore(lines){
   console.log(lines);
   score += (10 * lines);
   document.getElementById("score").innerHTML = "Score: " + score;
