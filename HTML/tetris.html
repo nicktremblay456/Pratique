@@ -276,16 +276,20 @@ let level = 0;
 let speed = 50;
 let clearedLines = 0;
 
+function setText(id, txt, value) {
+  document.getElementById(id).innerHTML = txt + value;
+}
+
 // Param lines for the total lines cleared after a tetromino landed
 function gameScore(lines){
   console.log(lines);
   score += (10 * lines);
-  document.getElementById("score").innerHTML = "Score: " + score;
+  setText("score", "Score: ", score);
 }
 
 function linesCleared(){
   clearedLines++;
-  document.getElementById("lines").innerHTML = "Lines: " + clearedLines;
+  setText("lines", "Lines: ", clearedLines);
   gameLevel()
 }
 
@@ -383,7 +387,7 @@ function gameLevel(){
       showEndGame(true);
   }
 
-  document.getElementById("level").innerHTML = "Level: " + level;
+  setText("level", "Level: ", level);
 }
 
 // game loop
