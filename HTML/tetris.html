@@ -283,7 +283,20 @@ function setText(id, txt, value) {
 // Param lines for the total lines cleared after a tetromino landed
 function gameScore(lines){
   console.log(lines);
-  score += (10 * lines);
+  switch (lines) {
+    case 1:
+      score += 12;
+      break;
+    case 2:
+      score += 50;
+      break;
+    case 3:
+      score += 125;
+      break;
+    case 4:
+      score += 1000;
+      break;
+  }
   setText("score", "Score: ", score);
 }
 
