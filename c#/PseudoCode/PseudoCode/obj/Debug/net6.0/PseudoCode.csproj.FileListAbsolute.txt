@@ -1,0 +1,15 @@
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\PseudoCode.exe
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\PseudoCode.deps.json
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\PseudoCode.runtimeconfig.json
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\PseudoCode.dll
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\ref\PseudoCode.dll
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\bin\Debug\net6.0\PseudoCode.pdb
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.csproj.AssemblyReference.cache
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.AssemblyInfoInputs.cache
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.AssemblyInfo.cs
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.csproj.CoreCompileInputs.cache
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.dll
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\ref\PseudoCode.dll
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.pdb
+C:\Users\Nick_\OneDrive\Bureau\c#\PseudoCode\PseudoCode\obj\Debug\net6.0\PseudoCode.genruntimeconfig.cache
