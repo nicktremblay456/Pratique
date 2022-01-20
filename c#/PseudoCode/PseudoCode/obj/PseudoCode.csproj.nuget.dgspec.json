@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj": {}
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj": {
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj",
+        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj",
         "projectName": "PseudoCode",
-        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj",
+        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\PseudoCode\\PseudoCode\\PseudoCode.csproj",
         "packagesPath": "C:\\Users\\Nick_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\c#\\PseudoCode\\PseudoCode\\obj\\",
+        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\PseudoCode\\PseudoCode\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick_\\AppData\\Roaming\\NuGet\\NuGet.Config",
