@@ -78,43 +78,88 @@ public class CaisseAutomatique1
 {
     public float prix, client;
 
+
     public void Traitement()
     {
         Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
-        Console.WriteLine("Entrée le prix du produit");
-        prix = float.Parse(Console.ReadLine());
-        Console.WriteLine("Entrée le montant d'argent que vous voulez donner");
-        client = float.Parse(Console.ReadLine());
+
+        // Demande a l'utilisateur d'entrée un prix et vérifie si la valeur entrée est plus grand que 0
+        // ou si c'est vraiment un nombre et non un caractere
+        Entrer(true, "Entrée le prix du produit");
+        while (prix <= 0)
+        {
+            Entrer(true, "Prix invalide, entrez un prix plus grand que 0...");
+        }
+
+        // Demande a l'utilisateur d'entrée un montant et vérifie si la valeur entrée est plus grand que 0 
+        // ou si c'est vraiment un nombre et non un caractere
+        Entrer(false, "Entrée le montant d'argent que vous voulez donner");
+        while (client <= 0)
+        {
+            Entrer(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
+        }
 
         // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
         //while (client != prix)
         //{
         if (client < prix)
-            {
-                float montantRestant = prix - client;
-                Payer(montantRestant);
-            }
-            else if (client > prix)
-            {
-                float montantSurplus = client - prix;
-                Redonner(montantSurplus);
-            }
+        {
+            Transaction(false, prix - client);
+        }
+        else if (client > prix)
+        {
+            Transaction(true, client - prix);
+        }
         //}
 
         Console.WriteLine("Transaction terminer");
     }
 
-    public void Payer(float montant)
+    /// <summary>
+    /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
+    /// </summary>
+    /// <param name="retourner">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
+    /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
+    private void Transaction(bool retourner, float montant)
     {
-        client += montant;
-        Console.WriteLine("Montant qui vous manque a payer: " + montant + "$");
-        Console.WriteLine("Vous donnez alors: " + montant + "$");
+        if (retourner)
+        {
+            client -= montant;
+            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
+        }
+        else
+        {
+            client += montant;
+            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
+        }
     }
 
-    public void Redonner(float montant)
+    /// <summary>
+    /// Prend l'input de l'utilisateur
+    /// </summary>
+    /// <param name="value">La variable qu'on utilise pour stoquer l'input entrée par l'utilisateur</param>
+    /// <param name="message">Le message a afficher selon la situation</param>
+    private void Entrer(bool priceCheck, string message)
     {
-        client -= montant;
-        Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
+        Console.WriteLine(message);
+        try
+        {
+            // Placer dans le bloque try car l'assignation du prix ou montant du client entrée
+            // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
+            if (priceCheck)
+                // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
+                prix = float.Parse(Console.ReadLine());
+            else
+                client = float.Parse(Console.ReadLine());
+        }
+        catch
+        {
+            // Si le try échoue, on rattrape l'erreur
+            if (priceCheck)
+                prix = 0.0f;
+            else
+                client = 0.5f;
+        }
     }
 }
 
@@ -126,47 +171,83 @@ public class CaisseAutomatique2
     public void Traitement()
     {
         Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
-        float montantRestant;
-        float montantSurplus;
-
 
         for (int i = 0; i < totalClients; i++)
         {
-            Console.WriteLine("Entrée le prix du produit pour le client " + (i + 1));
-            prix = float.Parse(Console.ReadLine());
-            Console.WriteLine("Entrée le montant d'argent que vous voulez que le client " + (i + 1) + " doit donner");
-            client = float.Parse(Console.ReadLine());
+            Entrer(true, "Entrée le prix du produit pour le client " + (i + 1));
+            while(prix <= 0)
+            {
+                Entrer(true, "Prix invalide, entrez un prix plus grand que 0...");
+            }
+
+            Entrer(false, "Entrée le montant d'argent que vous voulez que le client " + (i + 1) + " doit donner");
+            while(client <= 0)
+            {
+                Entrer(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
+            }
 
             // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
             //while (client != prix)
             //{
-                if (client < prix)
-                {
-                    montantRestant = prix - client;
-                    Payer(montantRestant);
-                }
-                else if (client > prix)
-                {
-                    montantSurplus = client - prix;
-                    Redonner(montantSurplus);
-                }
+            if (client < prix)
+            {
+                Transaction(false, prix - client);
+            }
+            else if (client > prix)
+            {
+                Transaction(true, client - prix);
+            }
             //}
             
             Console.WriteLine("Transaction terminer. Clients Restant: " + (totalClients - (i + 1)) + "\n");
         }
     }
 
-    public void Payer(float montant)
+    /// <summary>
+    /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
+    /// </summary>
+    /// <param name="retourner">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
+    /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
+    private void Transaction(bool retourner, float montant)
     {
-        client += montant;
-        Console.WriteLine("Montant qui vous manque a payer: " + montant + "$");
-        Console.WriteLine("Vous donnez alors: " + montant + "$");
+        if (retourner)
+        {
+            client -= montant;
+            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
+        }
+        else
+        {
+            client += montant;
+            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
+        }
     }
 
-    public void Redonner(float montant)
+    /// <summary>
+    /// Prend l'input de l'utilisateur
+    /// </summary>
+    /// <param name="value">La variable qu'on utilise pour stoquer l'input entrée par l'utilisateur</param>
+    /// <param name="message">Le message a afficher selon la situation</param>
+    private void Entrer(bool priceCheck, string message)
     {
-        client -= montant;
-        Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
+        Console.WriteLine(message);
+        try
+        {
+            // Placer dans le bloque try car l'assignation du prix ou montant du client entrée
+            // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
+            if (priceCheck)
+                // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
+                prix = float.Parse(Console.ReadLine());
+            else
+                client = float.Parse(Console.ReadLine());
+        }
+        catch
+        {
+            // Si le try échoue, on rattrape l'erreur
+            if (priceCheck)
+                prix = 0.0f;
+            else
+                client = 0.5f;
+        }
     }
 }
 
