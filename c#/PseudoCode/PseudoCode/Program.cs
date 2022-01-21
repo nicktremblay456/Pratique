@@ -3,12 +3,13 @@
     private static int input = 0;
     private static string inputStr = "";
 
+
     public static void Main()
     {
         Console.WriteLine("Entrer 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.");
         Console.WriteLine("1: Caisse automatique VERSION 1 \n" +
                           "2: Caisse automatique VERSION 2 \n" +
-                          "3: Comptage de mot \n" +
+                          "3: Comptage de mot *WORK IN PROGRESS* \n" +
                           "4: Saisie sans faille \n" +
                           "5: Devine le chiffre VERSION 1 \n" +
                           "6: Devine le chiffre VERSION 2 \n" +
@@ -177,12 +178,13 @@ public class ComptageDeMot
 
     public void Traitement()
     {
+
         for (int i = 0; i < phrase.Length; i++)
         {
-            if (!((i + 1) > phrase.Length) && !((i + 2) > phrase.Length) && !((i + 3) > phrase.Length))
+            if (!((i + 3) > phrase.Length))
             {
                 if (phrase[i] == ' ' && phrase[i + 1] == 'l' &&
-                    phrase[i + 2] == 'e' && phrase[i + 3] == ' ')
+                    phrase[i + 2] == 'e' && (phrase[i + 3] == ' ' || phrase[i + 3] == '.'))
                 {
                     total++;
                 }
@@ -202,19 +204,30 @@ public class SaisieSansFaille
     {
         Console.WriteLine("Entrer un nombre entier entre 1 et 150");
         inputStr = Console.ReadLine();
+        Verification();
 
         while (input < 1 || input > 150 || !Int32.TryParse(inputStr, out input))
         {
-            Console.WriteLine("La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
+            Console.WriteLine("REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
             inputStr = Console.ReadLine();
-            try
-            {
-                input = Int32.Parse(inputStr);
-            }
-            catch
-            {
-                input = 0;
-            }
+            Verification();
+        }
+    }
+
+    private void Verification()
+    {
+        try
+        {
+            input = Int32.Parse(inputStr);
+        }
+        catch
+        {
+            input = 0;
+        }
+
+        if (input >= 1 && input <= 150)
+        {
+            Console.WriteLine("ACCEPTER");
         }
     }
 }
