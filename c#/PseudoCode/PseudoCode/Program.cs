@@ -2,8 +2,8 @@
 // Copyright © 2022 © All Rights Reserved
 // </copyright>
 // <author>Nicolas Tremblay</author>
-// <date>08/30/2012 11:39:58 AM </date>
-// <summary>Class representing a Sample entity</summary>
+// <date>2022/01/21 21:39:58 PM </date>
+// <summary>Class representing all pseudocode in a single program</summary>
 public class PseudoCode
 {
     private static int input = 0;
