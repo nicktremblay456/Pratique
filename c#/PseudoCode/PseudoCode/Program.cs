@@ -18,8 +18,16 @@ public class PseudoCode
         private DevineLeChiffre1 devine1;
         private DevineLeChiffre2 devine2;
         private DevineLeChiffre3 devine3;
-        
-        // Props
+
+        // Props, propriétés public qui nous permet d'accèder aux values variables en haut sans pouvoir modifier leur valeur
+        // On pourrais juste mettre les variable en haut public mais je veut pas qu'on puisse modifier leur value
+        /*
+         * L'operateur => (appeler lambda) revient au même que faire, google pour plus d'info sur les props et lambda...
+         * get
+         * {
+         *      return caisse1;
+         * }
+         */
         public CaisseAutomatique1 Caisse1 { get => caisse1; }
         public CaisseAutomatique2 Caisse2 { get => caisse2; }
         public ComptageDeMot Comptage { get => comptage; }
@@ -31,7 +39,7 @@ public class PseudoCode
         public ProgramsData()// Constructor
         {
             // Initialise
-            caisse1 = new CaisseAutomatique1();
+            caisse1 = new CaisseAutomatique1();// operateur new pour créer une instance de la class
             caisse2 = new CaisseAutomatique2();
             comptage = new ComptageDeMot();
             saisie = new SaisieSansFaille();
@@ -78,7 +86,7 @@ public class PseudoCode
         switch (input)// plus clean que faire 8 if et else if
         {
             case 0: isRunning = false; break;// Coupe la boucle while dans la fonction Main() qui fait runner le programme
-            case 1: data.Caisse1.Process(); break;
+            case 1: data.Caisse1.Process(); break; // Appel la fonction process un passant par la props setter dans la struct en haut
             case 2: data.Caisse2.Process(); break;
             case 3: data.Comptage.Process(); break;
             case 4: data.Saisie.Process(); break;
@@ -106,7 +114,7 @@ public class PseudoCode
         {
             // Au lieu de cracher fait ça
             Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
-            input = 0;
+            input = -1;// Puisque l'input pris étais invalide, on met une valeur par défault qui sera elle aussi refuser pour que le programme redemande d'entrer l'input
         }
     }
 }
@@ -138,6 +146,7 @@ public class CaisseAutomatique1
         // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
         //while (client != prix)
         //{
+        // le ? c'est un operateur ternaire, google it ;p
         Transaction(client < price ? false : true, client < price ? price - client : client - price);
         //}
 
@@ -186,8 +195,8 @@ public class CaisseAutomatique1
 
 public class CaisseAutomatique2
 {
-    public float client, price;
-    public int totalClients = 5;
+    private float client, price;
+    private int totalClients = 5;
 
     public void Process()
     {
@@ -310,7 +319,6 @@ public class DevineLeChiffre1
 {
     private Random random = new Random();
     private int randNumber, userGuess;
-    private string inputStr = "";
 
     public void Process()
     {
@@ -322,7 +330,7 @@ public class DevineLeChiffre1
         Console.WriteLine("Entrer un nombre en 1 et 100");
         GetInput();
 
-        while (!Int32.TryParse(inputStr, out userGuess) || userGuess < 1 || userGuess > 100 || userGuess != randNumber)
+        while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
         {
             GetInput();
         }
@@ -332,17 +340,10 @@ public class DevineLeChiffre1
 
     private void GetInput()
     {
-        inputStr = Console.ReadLine();
-        try
-        {
-            userGuess = Int32.Parse(inputStr);
-        }
+        try { userGuess = Int32.Parse(Console.ReadLine()); }
         catch
         {
-            if (!Int32.TryParse(inputStr, out userGuess))
-            {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
-            }
+            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
             userGuess = 0;
             return;
             // early return parce que je veut préciser a l'utilisateur qu'il a entrée un input autre qu'un nombre entier
@@ -358,7 +359,6 @@ public class DevineLeChiffre2
 {
     private Random random = new Random();
     private int randNumber, userGuess, maxTry = 10;
-    private string inputStr = "";
 
     public void Process()
     {
@@ -367,7 +367,7 @@ public class DevineLeChiffre2
         Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
         GetInput();
 
-        while (!Int32.TryParse(inputStr, out userGuess) || userGuess < 1 || userGuess > 100 || userGuess != randNumber)
+        while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
         {
             GetInput();
         }
@@ -377,17 +377,10 @@ public class DevineLeChiffre2
 
     private void GetInput()
     {
-        inputStr = Console.ReadLine();
-        try
-        {
-            userGuess = Int32.Parse(inputStr);
-        }
+        try { userGuess = Int32.Parse(Console.ReadLine()); }
         catch
         {
-            if (!Int32.TryParse(inputStr, out userGuess))
-            {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
-            }
+            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
             userGuess = 0;
             return;
         }
