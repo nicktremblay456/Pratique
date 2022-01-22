@@ -8,6 +8,40 @@
 // <summary>Class representing all pseudocode in a single program</summary>
 public class PseudoCode
 {
+    private struct ProgramsData
+    {
+        private CaisseAutomatique1 caisse1;
+        private CaisseAutomatique2 caisse2;
+        private ComptageDeMot comptage;
+        private SaisieSansFaille saisie;
+        private DevineLeChiffre1 devine1;
+        private DevineLeChiffre2 devine2;
+        private DevineLeChiffre3 devine3;
+        
+        // Props
+        public CaisseAutomatique1 Caisse1 { get => caisse1; }
+        public CaisseAutomatique2 Caisse2 { get => caisse2; }
+        public ComptageDeMot Comptage { get => comptage; }
+        public SaisieSansFaille Saisie { get => saisie; }
+        public DevineLeChiffre1 DevineLeChiffre1 { get => devine1; }
+        public DevineLeChiffre2 DevineLeChiffre2 { get => devine2; }
+        public DevineLeChiffre3 DevineLeChiffre3 { get => devine3; }
+
+        public ProgramsData()// Constructor
+        {
+            // Initialise
+            caisse1 = new CaisseAutomatique1();
+            caisse2 = new CaisseAutomatique2();
+            comptage = new ComptageDeMot();
+            saisie = new SaisieSansFaille();
+            devine1 = new DevineLeChiffre1();
+            devine2 = new DevineLeChiffre2();
+            devine3 = new DevineLeChiffre3();
+        }
+    }
+
+    private static ProgramsData data = new ProgramsData();
+
     private static int input = 0;
     private static string inputStr = "";
     private static bool isRunning = true;
@@ -25,8 +59,8 @@ public class PseudoCode
 
     private static void Programme()
     {
-        Console.WriteLine("Entrer 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.");
-        Console.WriteLine("1: Caisse automatique VERSION 1 \n" +// \n pour skipper une ligne au lieu de faire plein de console.writeline()
+        Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire. \n" +
+                          "1: Caisse automatique VERSION 1 \n" +// \n pour skipper une ligne au lieu de faire plein de console.writeline()
                           "2: Caisse automatique VERSION 2 \n" +
                           "3: Comptage de mot *WORK IN PROGRESS* \n" +
                           "4: Saisie sans faille \n" +
@@ -41,40 +75,32 @@ public class PseudoCode
             Verification();
         }
         Console.Clear();
-        switch (input)// plus propre que faire 10 if et else if
+        switch (input)// plus clean que faire 10 if et else if
         {
             case 0:
                 // Coupe la boucle while dans la fonction Main() qui fait runner le programme
                 isRunning = false;
                 break;
             case 1:
-                // Crée un instance de la classe
-                CaisseAutomatique1 caisseAutomatique = new CaisseAutomatique1();
-                caisseAutomatique.Traitement();// call ça fonction Traitement()
+                data.Caisse1.Traitement();
                 break;
             case 2:
-                CaisseAutomatique2 caisseAutomatique2 = new CaisseAutomatique2();
-                caisseAutomatique2.Traitement();
+                data.Caisse2.Traitement();
                 break;
             case 3:
-                ComptageDeMot comptageDeMot = new ComptageDeMot();
-                comptageDeMot.Traitement();
+                data.Comptage.Traitement();
                 break;
             case 4:
-                SaisieSansFaille saisieSansFaille = new SaisieSansFaille();
-                saisieSansFaille.Traitement();
+                data.Saisie.Traitement();
                 break;
             case 5:
-                DevineLeChiffre1 devineLeChiffre = new DevineLeChiffre1();
-                devineLeChiffre.Traitement();
+                data.DevineLeChiffre1.Traitement();
                 break;
             case 6:
-                DevineLeChiffre2 devineLeChiffre2 = new DevineLeChiffre2();
-                devineLeChiffre2.Traitement();
+                data.DevineLeChiffre2.Traitement();
                 break;
             case 7:
-                DevineLeChiffre3 devineLeChiffre3 = new DevineLeChiffre3();
-                devineLeChiffre3.Traitement();
+                data.DevineLeChiffre3.Traitement();
                 break;
         }
     }
@@ -92,7 +118,7 @@ public class PseudoCode
             // Au lieu de cracher fait ça
             if (!Int32.TryParse(inputStr, out input))//si il y pas de int dans le string qui contient l'input entrée par le user
             {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 7");
+                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
             }
             input = 0;
         }
@@ -286,6 +312,9 @@ public class ComptageDeMot
 
     public void Traitement()
     {
+        // Retirer quand fixer
+        Console.WriteLine("*WORK IN PROGRESS* NE FONCTIONNE PAS DANS TOUS LES SITUATIONS");
+
         Console.WriteLine("Écrivez un phrase et le programme vas compter le nombre de 'le' dans la phrase");
         try { phrase = Console.ReadLine(); }
         catch { phrase = ""; }
