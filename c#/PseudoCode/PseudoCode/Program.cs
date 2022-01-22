@@ -1,11 +1,11 @@
 ﻿using System.Text.RegularExpressions;
 
-// <copyright file="Program.cs">
-// Copyright © 2022 © All Rights Reserved
-// </copyright>
-// <author>Nicolas Tremblay</author>
-// <date>2022/01/22 15:23:58 PM </date>
-// <summary>Class representing all pseudocode in a single program</summary>
+/// <copyright file="Program.cs">
+/// Copyright © 2022 © All Rights Reserved
+/// </copyright>
+/// <author>Nicolas Tremblay</author>
+/// <date>2022/01/22 16:26 PM </date>
+/// <summary>Class representing all pseudocode in a single program</summary>
 public class PseudoCode
 {
     // Data structure qui contient les sous programmes
@@ -86,6 +86,14 @@ public class PseudoCode
             case 6: data.DevineLeChiffre2.Process(); break;
             case 7: data.DevineLeChiffre3.Process(); break;
         }
+
+        if (isRunning)// Pas afficher le message inutilement et d'appuyer sur une touche si l'utilisateur veut quitter
+        {
+            // Fin du sous programme
+            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+            Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
+            Console.Clear();
+        }
     }
 
     private static void GetInput()
@@ -134,22 +142,17 @@ public class CaisseAutomatique1
         //}
 
         Console.WriteLine("Transaction terminer");
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
     /// <summary>
     /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
     /// </summary>
-    /// <param name="retourner">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
-    /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
-    private void Transaction(bool retourner, float montant)
+    /// <param name="returnMoney">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
+    /// <param name="amount">Le montant restant ou de surplus a payer ou redonner</param>
+    private void Transaction(bool returnMoney, float amount)
     {
-        client = retourner ? client + montant : client - montant;
-        Console.WriteLine(retourner ? "Montant de surplus qui vous reviens: " + montant + "$" : "Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
+        client = returnMoney ? client + amount : client - amount;
+        Console.WriteLine(returnMoney ? "Montant de surplus qui vous reviens: " + amount + "$" : "Montant qui vous manque a payer: " + amount + "$" + "\nVous donnez alors: " + amount + "$");
     }
 
     /// <summary>
@@ -212,22 +215,17 @@ public class CaisseAutomatique2
             
             Console.WriteLine("Transaction terminer. Clients Restant: " + (totalClients - (i + 1)) + "\n");
         }
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
     /// <summary>
     /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
     /// </summary>
-    /// <param name="retourner">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
-    /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
-    private void Transaction(bool retourner, float montant)
+    /// <param name="returnBack">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
+    /// <param name="amount">Le montant restant ou de surplus a payer ou redonner</param>
+    private void Transaction(bool returnBack, float amount)
     {
-        client = retourner ? client - montant : client + montant;
-        Console.WriteLine(retourner ? "Montant de surplus qui vous reviens: " + montant + "$" : "Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
+        client = returnBack ? client - amount : client + amount;
+        Console.WriteLine(returnBack ? "Montant de surplus qui vous reviens: " + amount + "$" : "Montant qui vous manque a payer: " + amount + "$" + "\nVous donnez alors: " + amount + "$");
     }
 
     /// <summary>
@@ -275,11 +273,6 @@ public class ComptageDeMot
 
         int count = Regex.Matches(sentence, "le").Count;
         Console.WriteLine("Total de LE: " + count);
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 }
 
@@ -289,22 +282,17 @@ public class SaisieSansFaille
 
     public void Process()
     {
-        GetInput("Entrer un nombre entier entre 1 et 150");
+        Console.WriteLine("Entrer un nombre entier entre 1 et 150");
+        GetInput();
 
         while (input < 1 || input > 150)
         {
-            GetInput("REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
+            GetInput();
         }
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
-    private void GetInput(string message)
+    private void GetInput()
     {
-        Console.WriteLine(message);
         try
         {
             input = Int32.Parse(Console.ReadLine());
@@ -314,10 +302,7 @@ public class SaisieSansFaille
             input = 0;
         }
 
-        if (input >= 1 && input <= 150)
-        {
-            Console.WriteLine("ACCEPTER");
-        }
+        Console.WriteLine((input >= 1 && input <= 150) ? "ACCEPTER" : "REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
     }
 }
 
@@ -343,11 +328,6 @@ public class DevineLeChiffre1
         }
 
         Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
     private void GetInput()
@@ -393,11 +373,6 @@ public class DevineLeChiffre2
         }
 
         Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
     private void GetInput()
@@ -451,11 +426,6 @@ public class DevineLeChiffre3
             Console.WriteLine("Trouvé! :-) \n Le nombre est: " + randNumber);
             End();
         }
-
-        // Fin du sous programme
-        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-        Console.Clear();
     }
 
     private void GetInput()

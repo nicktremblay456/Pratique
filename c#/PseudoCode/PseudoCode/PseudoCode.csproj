@@ -5,6 +5,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Company>$(Nicolas Tremblay)</Company>
+    <Product>$(PseudoCode)</Product>
+    <Description>Tous les exercices pseudocode transcrit en c#</Description>
   </PropertyGroup>
 
 </Project>
