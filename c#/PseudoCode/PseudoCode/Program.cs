@@ -8,6 +8,7 @@
 // <summary>Class representing all pseudocode in a single program</summary>
 public class PseudoCode
 {
+    // Data structure qui contient les sous programmes
     private struct ProgramsData
     {
         private CaisseAutomatique1 caisse1;
@@ -43,7 +44,6 @@ public class PseudoCode
     private static ProgramsData data = new ProgramsData();
 
     private static int input = 0;
-    private static string inputStr = "";
     private static bool isRunning = true;
 
     /// <summary>
@@ -53,11 +53,11 @@ public class PseudoCode
     {
         while(isRunning)
         {
-            Programme();
+            Program();
         }
     }
 
-    private static void Programme()
+    private static void Program()
     {
         Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire. \n" +
                           "1: Caisse automatique VERSION 1 \n" +// \n pour skipper une ligne au lieu de faire plein de console.writeline()
@@ -68,58 +68,36 @@ public class PseudoCode
                           "6: Devine le chiffre VERSION 2 \n" +
                           "7: Devine le chiffre VERSION 3 \n" +
                           "0: Quitter");
-        Verification();
+        GetInput();
         // La fonction comptage de mot n'est 100% fonctionnel
-        while (!Int32.TryParse(inputStr, out input) || input < 0 || input > 7)
+        while (input < 0 || input > 7)
         {
-            Verification();
+            GetInput();
         }
-        Console.Clear();
-        switch (input)// plus clean que faire 10 if et else if
+        Console.Clear();// Comme on le lis.. Clear la console.
+        switch (input)// plus clean que faire 8 if et else if
         {
-            case 0:
-                // Coupe la boucle while dans la fonction Main() qui fait runner le programme
-                isRunning = false;
-                break;
-            case 1:
-                data.Caisse1.Traitement();
-                break;
-            case 2:
-                data.Caisse2.Traitement();
-                break;
-            case 3:
-                data.Comptage.Traitement();
-                break;
-            case 4:
-                data.Saisie.Traitement();
-                break;
-            case 5:
-                data.DevineLeChiffre1.Traitement();
-                break;
-            case 6:
-                data.DevineLeChiffre2.Traitement();
-                break;
-            case 7:
-                data.DevineLeChiffre3.Traitement();
-                break;
+            case 0: isRunning = false; break;// Coupe la boucle while dans la fonction Main() qui fait runner le programme
+            case 1: data.Caisse1.Process(); break;
+            case 2: data.Caisse2.Process(); break;
+            case 3: data.Comptage.Process(); break;
+            case 4: data.Saisie.Process(); break;
+            case 5: data.DevineLeChiffre1.Process(); break;
+            case 6: data.DevineLeChiffre2.Process(); break;
+            case 7: data.DevineLeChiffre3.Process(); break;
         }
     }
 
-    private static void Verification()
+    private static void GetInput()
     {
-        inputStr = Console.ReadLine();
-
-        try// bloc try parce que on a une chance d'esseyer d'assigner un caractere a une variable de type int, resultat = crash :-)
+        try// bloc try parce que on a une chance d'esseyer d'assigner un caractere a une variable de type int, resultat -> crash :-)
         {
-            input = Int32.Parse(inputStr);
+            input = Int32.Parse(Console.ReadLine());
         }
         catch
         {
             // Au lieu de cracher fait ça
-            if (!Int32.TryParse(inputStr, out input))//si il y pas de int dans le string qui contient l'input entrée par le user
-            {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
-            }
+            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
             input = 0;
         }
     }
@@ -127,32 +105,32 @@ public class PseudoCode
 
 public class CaisseAutomatique1
 {
-    public float prix, client;
+    public float price, client;
 
-    public void Traitement()
+    public void Process()
     {
         Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
 
         // Demande a l'utilisateur d'entrée un prix et vérifie si la valeur entrée est plus grand que 0
         // ou si c'est vraiment un nombre et non un caractere
-        Entrer(true, "Entrée le prix du produit");
-        while (prix <= 0)
+        GetInput(true, "Entrée le prix du produit");
+        while (price <= 0)
         {
-            Entrer(true, "Prix invalide, entrez un prix plus grand que 0...");
+            GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
         }
 
         // Demande a l'utilisateur d'entrée un montant et vérifie si la valeur entrée est plus grand que 0 
         // ou si c'est vraiment un nombre et non un caractere
-        Entrer(false, "Entrée le montant d'argent que vous voulez donner");
+        GetInput(false, "Entrée le montant d'argent que vous voulez donner");
         while (client <= 0)
         {
-            Entrer(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
+            GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
         }
 
         // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
         //while (client != prix)
         //{
-        Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
+        Transaction(client < price ? false : true, client < price ? price - client : client - price);
         //}
 
         Console.WriteLine("Transaction terminer");
@@ -179,7 +157,7 @@ public class CaisseAutomatique1
     /// </summary>
     /// <param name="priceCheck">Mettre a true quand on veut assigner une value a la variable prix si non mettre faux pour le montant du client</param>
     /// <param name="message">Le message a afficher selon la situation</param>
-    private void Entrer(bool priceCheck, string message)
+    private void GetInput(bool priceCheck, string message)
     {
         Console.WriteLine(message);
         try
@@ -188,7 +166,7 @@ public class CaisseAutomatique1
             // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
             if (priceCheck)
                 // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
-                prix = float.Parse(Console.ReadLine());
+                price = float.Parse(Console.ReadLine());
             else
                 client = float.Parse(Console.ReadLine());
         }
@@ -196,7 +174,7 @@ public class CaisseAutomatique1
         {
             // Si le try échoue, on rattrape l'erreur
             if (priceCheck)
-                prix = 0.0f;
+                price = 0.0f;
             else
                 client = 0.0f;
         }
@@ -205,31 +183,31 @@ public class CaisseAutomatique1
 
 public class CaisseAutomatique2
 {
-    public float client, prix;
+    public float client, price;
     public int totalClients = 5;
 
-    public void Traitement()
+    public void Process()
     {
         Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
 
         for (int i = 0; i < totalClients; i++)
         {
-            Entrer(true, "Entrée le prix du produit pour le client " + (i + 1));
-            while(prix <= 0)
+            GetInput(true, "Entrée le prix du produit pour le client " + (i + 1));
+            while(price <= 0)
             {
-                Entrer(true, "Prix invalide, entrez un prix plus grand que 0...");
+                GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
             }
 
-            Entrer(false, "Entrée le montant d'argent que vous voulez que le client " + (i + 1) + " doit donner");
+            GetInput(false, "Entrée le montant d'argent que vous voulez que le client " + (i + 1) + " doit donner");
             while(client <= 0)
             {
-                Entrer(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
+                GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
             }
 
             // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
             //while (client != prix)
             //{
-            Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
+            Transaction(client < price ? false : true, client < price ? price - client : client - price);
             //}
             
             Console.WriteLine("Transaction terminer. Clients Restant: " + (totalClients - (i + 1)) + "\n");
@@ -257,7 +235,7 @@ public class CaisseAutomatique2
     /// </summary>
     /// <param name="priceCheck">Mettre a true quand on veut assigner une value a la variable prix si non mettre faux pour le montant du client</param>
     /// <param name="message">Le message a afficher selon la situation</param>
-    private void Entrer(bool priceCheck, string message)
+    private void GetInput(bool priceCheck, string message)
     {
         Console.WriteLine(message);
         try
@@ -266,7 +244,7 @@ public class CaisseAutomatique2
             // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
             if (priceCheck)
                 // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
-                prix = float.Parse(Console.ReadLine());
+                price = float.Parse(Console.ReadLine());
             else
                 client = float.Parse(Console.ReadLine());
         }
@@ -274,7 +252,7 @@ public class CaisseAutomatique2
         {
             // Si le try échoue, on rattrape l'erreur
             if (priceCheck)
-                prix = 0.0f;
+                price = 0.0f;
             else
                 client = 0.5f;
         }
@@ -284,18 +262,18 @@ public class CaisseAutomatique2
 // WORK IN PROGRESS
 public class ComptageDeMot
 {
-    private string phrase = "";
+    private string sentence = "";
 
-    public void Traitement()
+    public void Process()
     {
         // Retirer quand fixer
         Console.WriteLine("*WORK IN PROGRESS* NE FONCTIONNE PAS DANS TOUS LES SITUATIONS");
 
         Console.WriteLine("Écrivez un phrase et le programme vas compter le nombre de 'le' dans la phrase");
-        try { phrase = Console.ReadLine(); }
-        catch { phrase = ""; }
+        try { sentence = Console.ReadLine(); }
+        catch { sentence = ""; }
 
-        int count = Regex.Matches(phrase, "le").Count;
+        int count = Regex.Matches(sentence, "le").Count;
         Console.WriteLine("Total de LE: " + count);
 
         // Fin du sous programme
@@ -309,17 +287,22 @@ public class SaisieSansFaille
 {
     private int input;
 
-    public void Traitement()
+    public void Process()
     {
-        VerifierInput("Entrer un nombre entier entre 1 et 150");
+        GetInput("Entrer un nombre entier entre 1 et 150");
 
         while (input < 1 || input > 150)
         {
-            VerifierInput("REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
+            GetInput("REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
         }
+
+        // Fin du sous programme
+        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
+        Console.Clear();
     }
 
-    private void VerifierInput(string message)
+    private void GetInput(string message)
     {
         Console.WriteLine(message);
         try
@@ -334,35 +317,29 @@ public class SaisieSansFaille
         if (input >= 1 && input <= 150)
         {
             Console.WriteLine("ACCEPTER");
-
-            // Fin du sous programme
-            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-            Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
-            Console.Clear();
         }
     }
 }
 
 public class DevineLeChiffre1
 {
-    private Random Random = new Random();
-    private int randNumber;
-    private int userGuess;
+    private Random random = new Random();
+    private int randNumber, userGuess;
     private string inputStr = "";
 
-    public void Traitement()
+    public void Process()
     {
         // 101 parce que le 2eme chiffre en parametre de la fonction Next est exclusif
         // ce qui fait qu'il aurais génerer un nombre entre 1 et 100.
         // Même principe pour le 0
-        randNumber = Random.Next(1, 101);
+        randNumber = random.Next(1, 101);
         Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
         Console.WriteLine("Entrer un nombre en 1 et 100");
-        Verification();
+        GetInput();
 
         while (!Int32.TryParse(inputStr, out userGuess) || userGuess < 1 || userGuess > 100 || userGuess != randNumber)
         {
-            Verification();
+            GetInput();
         }
 
         Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
@@ -373,7 +350,7 @@ public class DevineLeChiffre1
         Console.Clear();
     }
 
-    private void Verification()
+    private void GetInput()
     {
         inputStr = Console.ReadLine();
         try
@@ -399,22 +376,20 @@ public class DevineLeChiffre1
 
 public class DevineLeChiffre2
 {
-    private Random Random = new Random();
-    private int randNumber;
-    private int userGuess;
+    private Random random = new Random();
+    private int randNumber, userGuess, maxTry = 10;
     private string inputStr = "";
-    private int essai = 10;
 
-    public void Traitement()
+    public void Process()
     {
-        randNumber = Random.Next(1, 101);
+        randNumber = random.Next(1, 101);
         Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
         Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
-        Verification();
+        GetInput();
 
         while (!Int32.TryParse(inputStr, out userGuess) || userGuess < 1 || userGuess > 100 || userGuess != randNumber)
         {
-            Verification();
+            GetInput();
         }
 
         Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
@@ -425,7 +400,7 @@ public class DevineLeChiffre2
         Console.Clear();
     }
 
-    private void Verification()
+    private void GetInput()
     {
         inputStr = Console.ReadLine();
         try
@@ -447,34 +422,34 @@ public class DevineLeChiffre2
         
         Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
         
-        essai--;// Retire 1 vie
-        Console.WriteLine(essai == 0 ? "Perdu :-(" : "Il reste " + essai + " essai");
+        maxTry--;// Retire 1 vie
+        Console.WriteLine(maxTry == 0 ? "Perdu :-(" : "Il reste " + maxTry + " essai");
     }
 }
 
 public class DevineLeChiffre3
 {
     private Random random = new Random();
-    private int randNumber, userGuess, essai = 10;
-    private string inputStr = "", inputFin = "";
+    private int randNumber, userGuess, maxTry = 10;
+    private string endingInput = "";
     private bool isRunning = true;
 
-    public void Traitement()
+    public void Process()
     {
         randNumber = random.Next(1, 101);
         Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
         Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
-        Verification();
+        GetInput();
 
         while(isRunning)
         {
-            while (!Int32.TryParse(inputStr, out userGuess) || userGuess < 1 || userGuess > 100 || userGuess != randNumber)
+            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
-                Verification();
+                GetInput();
             }
 
             Console.WriteLine("Trouvé! :-) \n Le nombre est: " + randNumber);
-            Fin();
+            End();
         }
 
         // Fin du sous programme
@@ -483,20 +458,15 @@ public class DevineLeChiffre3
         Console.Clear();
     }
 
-    private void Verification()
+    private void GetInput()
     {
-        inputStr = Console.ReadLine();
-
         try
         {
-            userGuess = Int32.Parse(inputStr);
+            userGuess = Int32.Parse(Console.ReadLine());
         }
         catch
         {
-            if (!Int32.TryParse(inputStr, out userGuess))
-            {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
-            }
+            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
             userGuess = 0;
             return;
         }
@@ -506,34 +476,34 @@ public class DevineLeChiffre3
 
         Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
-        essai--;
-        Console.WriteLine(essai == 0 ? "Perdu :-(" : "Il reste " + essai + " essai");
+        maxTry--;
+        Console.WriteLine(maxTry == 0 ? "Perdu :-(" : "Il reste " + maxTry + " essai");
     }
 
-    private void Fin()
+    private void End()
     {
         Console.WriteLine("Entrée y pour commencer une nouvelle partie ou n pour quitter");
-        InputFin();
+        GetEndingInput();
 
-        while (inputFin != "y" && inputFin != "Y" && inputFin != "n" && inputFin != "N")
+        while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
         {
             Console.WriteLine("La valeur entrée est invalide \n Entrée y pour commencer une nouvelle partie ou n pour quitter");
-            InputFin();
+            GetEndingInput();
         }
     }
 
-    private void InputFin()
+    private void GetEndingInput()
     {
-        inputFin = Console.ReadLine();
+        endingInput = Console.ReadLine();
 
-        if (inputFin == "y" || inputFin == "Y")
+        if (endingInput == "y" || endingInput == "Y")
         {
-            essai = 10;
-            inputFin = "";
+            maxTry = 10;
+            endingInput = "";
             Console.Clear();
-            Traitement();
+            Process();
         }
-        else if (inputFin == "n" || inputFin == "N")
+        else if (endingInput == "n" || endingInput == "N")
         {
             isRunning = false;
         }
