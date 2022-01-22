@@ -1,4 +1,6 @@
-﻿// <copyright file="Program.cs">
+﻿using System.Text.RegularExpressions;
+
+// <copyright file="Program.cs">
 // Copyright © 2022 © All Rights Reserved
 // </copyright>
 // <author>Nicolas Tremblay</author>
@@ -33,8 +35,8 @@ public class PseudoCode
                           "7: Devine le chiffre VERSION 3 \n" +
                           "0: Quitter");
         Verification();
-        // Verification -> input == 3 parce que la fonction comptage de mot n'est pas encore fonctionnel
-        while (!Int32.TryParse(inputStr, out input) || input < 0 || input > 7 || input == 3)
+        // La fonction comptage de mot n'est 100% fonctionnel
+        while (!Int32.TryParse(inputStr, out input) || input < 0 || input > 7)
         {
             Verification();
         }
@@ -101,7 +103,6 @@ public class CaisseAutomatique1
 {
     public float prix, client;
 
-
     public void Traitement()
     {
         Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
@@ -125,6 +126,7 @@ public class CaisseAutomatique1
         // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
         //while (client != prix)
         //{
+        //Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
         if (client < prix)
         {
             Transaction(false, prix - client);
@@ -152,20 +154,20 @@ public class CaisseAutomatique1
     {
         if (retourner)
         {
-            client -= montant;
-            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
+            client += montant;
+            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
         }
         else
         {
-            client += montant;
-            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
+            client -= montant;
+            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
         }
     }
 
     /// <summary>
     /// Prend l'input de l'utilisateur
     /// </summary>
-    /// <param name="value">La variable qu'on utilise pour stoquer l'input entrée par l'utilisateur</param>
+    /// <param name="priceCheck">Mettre a true quand on veut assigner une value a la variable prix si non mettre faux pour le montant du client</param>
     /// <param name="message">Le message a afficher selon la situation</param>
     private void Entrer(bool priceCheck, string message)
     {
@@ -186,7 +188,7 @@ public class CaisseAutomatique1
             if (priceCheck)
                 prix = 0.0f;
             else
-                client = 0.5f;
+                client = 0.0f;
         }
     }
 }
@@ -287,25 +289,21 @@ public class CaisseAutomatique2
 // WORK IN PROGRESS
 public class ComptageDeMot
 {
-    private int total = 0;
-    private string phrase = "le le le le";
+    private string phrase = "";
 
     public void Traitement()
     {
+        Console.WriteLine("Écrivez un phrase et le programme vas compter le nombre de 'le' dans la phrase");
+        try { phrase = Console.ReadLine(); }
+        catch { phrase = ""; }
 
-        for (int i = 0; i < phrase.Length; i++)
-        {
-            if (!((i + 3) > phrase.Length))
-            {
-                if (phrase[i] == ' ' && phrase[i + 1] == 'l' &&
-                    phrase[i + 2] == 'e' && (phrase[i + 3] == ' ' || phrase[i + 3] == '.'))
-                {
-                    total++;
-                }
-            }
-        }
+        int count = Regex.Matches(phrase, "le").Count;
+        Console.WriteLine("Total de LE: " + count);
 
-        Console.WriteLine("Total de LE: " + total);
+        // Fin du sous programme
+        Console.WriteLine("\nAppuyez sur une touche pour continuer...");
+        Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
+        Console.Clear();
     }
 }
 
