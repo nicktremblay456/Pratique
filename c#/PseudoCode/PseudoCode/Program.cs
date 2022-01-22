@@ -219,14 +219,7 @@ public class CaisseAutomatique2
             // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
             //while (client != prix)
             //{
-            if (client < prix)
-            {
-                Transaction(false, prix - client);
-            }
-            else if (client > prix)
-            {
-                Transaction(true, client - prix);
-            }
+            Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
             //}
             
             Console.WriteLine("Transaction terminer. Clients Restant: " + (totalClients - (i + 1)) + "\n");
