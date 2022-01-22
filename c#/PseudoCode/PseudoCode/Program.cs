@@ -4,7 +4,7 @@
 // Copyright © 2022 © All Rights Reserved
 // </copyright>
 // <author>Nicolas Tremblay</author>
-// <date>2022/01/21 21:39:58 PM </date>
+// <date>2022/01/22 15:23:58 PM </date>
 // <summary>Class representing all pseudocode in a single program</summary>
 public class PseudoCode
 {
@@ -152,15 +152,7 @@ public class CaisseAutomatique1
         // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
         //while (client != prix)
         //{
-        //Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
-        if (client < prix)
-        {
-            Transaction(false, prix - client);
-        }
-        else if (client > prix)
-        {
-            Transaction(true, client - prix);
-        }
+        Transaction(client < prix ? false : true, client < prix ? prix - client : client - prix);
         //}
 
         Console.WriteLine("Transaction terminer");
@@ -178,16 +170,8 @@ public class CaisseAutomatique1
     /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
     private void Transaction(bool retourner, float montant)
     {
-        if (retourner)
-        {
-            client += montant;
-            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
-        }
-        else
-        {
-            client -= montant;
-            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
-        }
+        client = retourner ? client + montant : client - montant;
+        Console.WriteLine(retourner ? "Montant de surplus qui vous reviens: " + montant + "$" : "Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
     }
 
     /// <summary>
@@ -264,22 +248,14 @@ public class CaisseAutomatique2
     /// <param name="montant">Le montant restant ou de surplus a payer ou redonner</param>
     private void Transaction(bool retourner, float montant)
     {
-        if (retourner)
-        {
-            client -= montant;
-            Console.WriteLine("Montant de surplus qui vous reviens: " + montant + "$");
-        }
-        else
-        {
-            client += montant;
-            Console.WriteLine("Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
-        }
+        client = retourner ? client - montant : client + montant;
+        Console.WriteLine(retourner ? "Montant de surplus qui vous reviens: " + montant + "$" : "Montant qui vous manque a payer: " + montant + "$" + "\nVous donnez alors: " + montant + "$");
     }
 
     /// <summary>
     /// Prend l'input de l'utilisateur
     /// </summary>
-    /// <param name="value">La variable qu'on utilise pour stoquer l'input entrée par l'utilisateur</param>
+    /// <param name="priceCheck">Mettre a true quand on veut assigner une value a la variable prix si non mettre faux pour le montant du client</param>
     /// <param name="message">Le message a afficher selon la situation</param>
     private void Entrer(bool priceCheck, string message)
     {
@@ -417,14 +393,7 @@ public class DevineLeChiffre1
             // ce qui n'aurais pas sens.
         }
 
-        if (userGuess < randNumber)
-        {
-            Console.WriteLine("Plus petit, esseyer un nombre plus grand");
-        }
-        else if (userGuess > randNumber)
-        {
-            Console.WriteLine("Plus grand, esseyer un nombre plus petit");
-        }
+        Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
     }
 }
 
@@ -475,24 +444,11 @@ public class DevineLeChiffre2
 
         if (userGuess == randNumber)
             return;// early return parce qu'on veut pas perdre une vie si on a trouvé la réponse
-        else if (userGuess < randNumber)
-        {
-            Console.WriteLine("Plus petit, esseyer un nombre plus grand");
-        }
-        else if (userGuess > randNumber)
-        {
-            Console.WriteLine("Plus grand, esseyer un nombre plus petit");
-        }
         
-        essai--;
-        if (essai == 0)
-        {
-            Console.WriteLine("Perdu :-(");
-        }
-        else
-        {
-            Console.WriteLine("Il reste " + essai + " essai");
-        }
+        Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
+        
+        essai--;// Retire 1 vie
+        Console.WriteLine(essai == 0 ? "Perdu :-(" : "Il reste " + essai + " essai");
     }
 }
 
@@ -547,26 +503,11 @@ public class DevineLeChiffre3
         
         if (userGuess == randNumber)
             return;
-        else if (userGuess < randNumber)
-        {
-            Console.WriteLine("Plus petit, esseyer un nombre plus grand");
-        }
-        else if (userGuess > randNumber)
-        {
-            Console.WriteLine("Plus grand, esseyer un nombre plus petit");
-        }
 
+        Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
         essai--;
-        if (essai == 0)
-        {
-            Console.WriteLine("Perdu :-(");
-            Fin();
-        }
-        else
-        {
-            Console.WriteLine("Il reste " + essai + " essai");
-        }
+        Console.WriteLine(essai == 0 ? "Perdu :-(" : "Il reste " + essai + " essai");
     }
 
     private void Fin()
