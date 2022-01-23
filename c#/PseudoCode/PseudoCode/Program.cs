@@ -39,7 +39,7 @@ public class PseudoCode
         public ProgramsData()// Constructor
         {
             // Initialise
-            caisse1 = new CaisseAutomatique1();// operateur new pour créer une instance de la class
+            caisse1 = new CaisseAutomatique1();// operateur new pour créer une instance de la class et ça appel la fonction constructeur
             caisse2 = new CaisseAutomatique2();
             comptage = new ComptageDeMot();
             saisie = new SaisieSansFaille();
@@ -324,7 +324,6 @@ public class DevineLeChiffre1
     {
         // 101 parce que le 2eme chiffre en parametre de la fonction Next est exclusif
         // ce qui fait qu'il aurais génerer un nombre entre 1 et 100.
-        // Même principe pour le 0
         randNumber = random.Next(1, 101);
         Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
         Console.WriteLine("Entrer un nombre en 1 et 100");
