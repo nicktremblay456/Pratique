@@ -121,7 +121,7 @@ public class PseudoCode
 
 public class CaisseAutomatique1
 {
-    public float price, client;
+    private float price, client;
 
     public void Process()
     {
