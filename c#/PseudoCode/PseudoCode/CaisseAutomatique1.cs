@@ -1,4 +1,10 @@
-﻿public class CaisseAutomatique1
+﻿/// <copyright file="Program.cs">
+/// Copyright © 2022 © All Rights Reserved
+/// </copyright>
+/// <author>Nicolas Tremblay</author>
+/// <date>2022/01/22 16:26 PM </date>
+/// <summary>Class representing Caisse Automatique version 1</summary>
+public class CaisseAutomatique1
 {
     private float price, client;
 

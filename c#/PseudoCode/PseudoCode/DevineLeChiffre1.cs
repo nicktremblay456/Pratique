@@ -1,4 +1,10 @@
-﻿public class DevineLeChiffre1
+﻿/// <copyright file="Program.cs">
+/// Copyright © 2022 © All Rights Reserved
+/// </copyright>
+/// <author>Nicolas Tremblay</author>
+/// <date>2022/01/22 16:26 PM </date>
+/// <summary>Class representing Devine le chiffre Version 1</summary>
+public class DevineLeChiffre1
 {
     private Random random = new Random();
     private int randNumber, userGuess;

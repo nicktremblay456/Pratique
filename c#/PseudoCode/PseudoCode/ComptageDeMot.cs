@@ -1,6 +1,17 @@
 ﻿using System.Text.RegularExpressions;
 
-// WORK IN PROGRESS
+/*
+ 
+                              *****************WORK IN PROGRESS*****************
+ 
+ */
+
+/// <copyright file="Program.cs">
+/// Copyright © 2022 © All Rights Reserved
+/// </copyright>
+/// <author>Nicolas Tremblay</author>
+/// <date>2022/01/22 16:26 PM </date>
+/// <summary>Class representing Comptage de mot</summary>
 public class ComptageDeMot
 {
     private string sentence = "";

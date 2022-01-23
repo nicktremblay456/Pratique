@@ -1,4 +1,10 @@
-﻿public class SaisieSansFaille
+﻿/// <copyright file="Program.cs">
+/// Copyright © 2022 © All Rights Reserved
+/// </copyright>
+/// <author>Nicolas Tremblay</author>
+/// <date>2022/01/22 16:26 PM </date>
+/// <summary>Class representing Saisie sans faille</summary>
+public class SaisieSansFaille
 {
     private int input;
 
@@ -15,14 +21,8 @@
 
     private void GetInput()
     {
-        try
-        {
-            input = Int32.Parse(Console.ReadLine());
-        }
-        catch
-        {
-            input = 0;
-        }
+        try { input = Int32.Parse(Console.ReadLine()); }
+        catch { input = 0; }
 
         Console.WriteLine((input >= 1 && input <= 150) ? "ACCEPTER" : "REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
     }
