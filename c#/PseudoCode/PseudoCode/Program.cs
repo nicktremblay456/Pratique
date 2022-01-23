@@ -49,7 +49,7 @@ public class PseudoCode
         }
     }
 
-    private static ProgramsData data = new ProgramsData();
+    private static ProgramsData data = new ProgramsData();// Initialise le data
 
     private static int input = 0;
     private static bool isRunning = true;
@@ -334,7 +334,7 @@ public class DevineLeChiffre1
             GetInput();
         }
 
-        Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
+        Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
     }
 
     private void GetInput()
@@ -371,7 +371,7 @@ public class DevineLeChiffre2
             GetInput();
         }
 
-        Console.WriteLine("Trouvé! Le nombre est: " + randNumber);
+        Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
     }
 
     private void GetInput()
@@ -415,7 +415,7 @@ public class DevineLeChiffre3
                 GetInput();
             }
 
-            Console.WriteLine("Trouvé! :-) \n Le nombre est: " + randNumber);
+            Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
             End();
         }
     }
@@ -444,7 +444,7 @@ public class DevineLeChiffre3
 
     private void End()
     {
-        Console.WriteLine("Entrée y pour commencer une nouvelle partie ou n pour quitter");
+        Console.WriteLine("Entrée y pour commencer une nouvelle partie ou n pour retourner au menu principale");
         GetEndingInput();
 
         while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
