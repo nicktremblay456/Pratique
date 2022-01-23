@@ -24,6 +24,6 @@ public class SaisieSansFaille
         try { input = Int32.Parse(Console.ReadLine()); }
         catch { input = 0; }
 
-        Console.WriteLine((input >= 1 && input <= 150) ? "ACCEPTER" : "REFUSER \n La valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
+        Console.WriteLine((input >= 1 && input <= 150) ? "ACCEPTER" : "REFUSER \nLa valeur entrée est invalide, entrer un nombre entier entre 1 et 150");
     }
 }
