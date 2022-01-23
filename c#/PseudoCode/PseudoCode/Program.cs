@@ -8,12 +8,12 @@ public class PseudoCode
 {
     // Data structure qui contient les sous programmes
     private static ProgramsData data = new ProgramsData();// Initialise le data avec new
-
     private static int input = 0;
     private static bool isRunning = true;
 
     /// <summary>
-    /// Fonction principale qui fait rouler tout
+    /// Fonction principale qui fait rouler tout, on peut pas runner notre code sans
+    /// voir même une erreur vas être generer disant qu'il manque une method static main()
     /// </summary>
     private static void Main()
     {
@@ -44,7 +44,7 @@ public class PseudoCode
         switch (input)// plus clean que faire 8 if et else if
         {
             case 0: isRunning = false; break;// Coupe la boucle while dans la fonction Main() qui fait runner le programme
-            case 1: data.Caisse1.Process(); break; // Appel la fonction process un passant par la props setter dans la struct en haut
+            case 1: data.Caisse1.Process(); break; // Appel la fonction process en passant par la props setter dans la struct ProgramsData
             case 2: data.Caisse2.Process(); break;
             case 3: data.Comptage.Process(); break;
             case 4: data.Saisie.Process(); break;
@@ -56,8 +56,8 @@ public class PseudoCode
         if (isRunning)// Pas afficher le message inutilement et d'appuyer sur une touche si l'utilisateur veut quitter
         {
             // Fin du sous programme
-            Console.WriteLine("\nAppuyez sur une touche pour continuer...");
-            Console.ReadKey();// Attend que l'utilisateur appuis sur une touche avant de continuer
+            Console.WriteLine("\nAppuyez sur une touche pour revenir au menu principale...");
+            Console.ReadKey();// Attend que l'utilisateur appuis sur une touche (n'importe laquelle) avant de continuer
             Console.Clear();
         }
     }

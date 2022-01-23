@@ -16,10 +16,10 @@
         {
             while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
+                if (maxTry == 0) break;
                 GetInput();
             }
 
-            Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
             End();
         }
     }
@@ -38,9 +38,12 @@
         }
 
         if (userGuess == randNumber)
+        {
+            Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
             return;
+        }
 
-        Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
+        Console.WriteLine((userGuess < randNumber && maxTry != 0) ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
         maxTry--;
         Console.WriteLine(maxTry == 0 ? "Perdu :-(" : "Il reste " + maxTry + " essai");

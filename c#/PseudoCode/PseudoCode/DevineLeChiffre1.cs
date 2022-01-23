@@ -16,8 +16,6 @@
         {
             GetInput();
         }
-
-        Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
     }
 
     private void GetInput()
@@ -31,6 +29,12 @@
             // early return parce que je veut préciser a l'utilisateur qu'il a entrée un input autre qu'un nombre entier
             // et parce qu'on set userGuess a 0 donc l'ordi obligatoirement le message qui dit que le nombre est trop petit sera afficher
             // ce qui n'aurais pas sens.
+        }
+
+        if (userGuess == randNumber)
+        {
+            Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
+            return;
         }
 
         Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");

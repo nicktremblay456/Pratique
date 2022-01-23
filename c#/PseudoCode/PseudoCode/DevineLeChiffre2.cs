@@ -14,8 +14,6 @@
         {
             GetInput();
         }
-
-        Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
     }
 
     private void GetInput()
@@ -29,7 +27,10 @@
         }
 
         if (userGuess == randNumber)
+        {
+            Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
             return;// early return parce qu'on veut pas perdre une vie si on a trouvé la réponse
+        }
 
         Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
