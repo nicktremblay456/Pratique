@@ -1,4 +1,4 @@
-﻿/// <copyright file="Program.cs">
+﻿/// <copyright file="ProgramsData.cs">
 /// Copyright © 2022 © All Rights Reserved
 /// </copyright>
 /// <author>Nicolas Tremblay</author>

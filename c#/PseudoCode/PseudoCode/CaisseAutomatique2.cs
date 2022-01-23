@@ -1,4 +1,4 @@
-﻿/// <copyright file="Program.cs">
+﻿/// <copyright file="CaisseAutomatique2.cs">
 /// Copyright © 2022 © All Rights Reserved
 /// </copyright>
 /// <author>Nicolas Tremblay</author>

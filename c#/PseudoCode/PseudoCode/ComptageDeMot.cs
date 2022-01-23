@@ -6,7 +6,7 @@
  
  */
 
-/// <copyright file="Program.cs">
+/// <copyright file="ComptageDeMot.cs">
 /// Copyright © 2022 © All Rights Reserved
 /// </copyright>
 /// <author>Nicolas Tremblay</author>
