@@ -10,7 +10,7 @@
     {
         // Data structure qui contient les sous programmes
         private static ProgramData data = new ProgramData();// Initialise le data avec new
-        private static Option input = 0;
+        private static Option userChoice = Option.NONE;
         private static bool isRunning = true;
 
         /// <summary>
@@ -37,12 +37,12 @@
                               "7: Devine le chiffre VERSION 3\n" +
                               "0: Quitter");
             GetInput();
-            while ((int)input < 0 || (int)input > 7)
+            while ((int)userChoice < 0 || (int)userChoice > 7)
             {
                 GetInput();
             }
             Console.Clear();// Comme on le lis.. Clear la console.
-            switch (input)// plus clean que faire 8 if et else if
+            switch (userChoice)// plus clean que faire 8 if et else if
             {
                 case Option.QUIT: isRunning = false; break;// Coupe la boucle while dans la fonction Main() qui fait runner le programme
                 case Option.CAISSE_VERSION_1: data.Caisse1.Process(); break; // Appel la fonction process en passant par la props setter dans la struct ProgramsData
@@ -54,7 +54,7 @@
                 case Option.DEVINE_VERSION_3: data.DevineLeChiffre3.Process(); break;
             }
 
-            if (isRunning)// Pas afficher le message inutilement et d'appuyer sur une touche si l'utilisateur veut quitter
+            if (isRunning)// Pour pas afficher le message inutilement et d'appuyer sur une touche si l'utilisateur veut quitter
             {
                 // Fin du sous programme
                 Console.WriteLine("\nAppuyez sur une touche pour revenir au menu principale...");
@@ -67,13 +67,13 @@
         {
             try// bloc try parce que on a une chance d'esseyer d'assigner un caractere a une variable de type int, resultat -> crash :-)
             {
-                input = (Option)Int32.Parse(Console.ReadLine());
+                userChoice = (Option)Int32.Parse(Console.ReadLine());
             }
             catch
             {
                 // Au lieu de cracher fait ça
                 Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
-                input = Option.NONE;// Puisque l'input pris étais invalide, on met une valeur par défault qui sera elle aussi refuser pour que le programme redemande d'entrer l'input
+                userChoice = Option.NONE;// Puisque l'input pris étais invalide, on met une valeur par défault qui sera elle aussi refuser pour que le programme redemande d'entrer l'input
             }
         }
     }

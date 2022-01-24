@@ -14,7 +14,7 @@
         {
             string searchTerm = "le";
 
-            Console.WriteLine("Écrivez un phrase et le programme vas compter le nombre de 'le' dans la phrase");
+            Console.WriteLine("Écrivez une phrase et le programme vas compter le nombre de mot 'le' dans la phrase");
             try { txt = Console.ReadLine(); }
             catch { txt = ""; }
 
