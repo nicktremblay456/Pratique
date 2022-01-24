@@ -30,14 +30,13 @@
             Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.\n\n" +
                               "1: Caisse automatique VERSION 1\n" +// \n pour skipper une ligne au lieu de faire plein de console.writeline()
                               "2: Caisse automatique VERSION 2\n" +
-                              "3: Comptage de mot *WORK IN PROGRESS*\n" +
+                              "3: Comptage de mot\n" +
                               "4: Saisie sans faille\n" +
                               "5: Devine le chiffre VERSION 1\n" +
                               "6: Devine le chiffre VERSION 2\n" +
                               "7: Devine le chiffre VERSION 3\n" +
                               "0: Quitter");
             GetInput();
-            // La fonction comptage de mot n'est 100% fonctionnel
             while ((int)input < 0 || (int)input > 7)
             {
                 GetInput();

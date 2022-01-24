@@ -1,11 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-/*
- 
-                              *****************WORK IN PROGRESS*****************
- 
- */
-namespace TNT
+﻿namespace TNT
 {
     /// <copyright file="ComptageDeMot.cs">
     /// Copyright © 2022 © All Rights Reserved
@@ -15,19 +8,27 @@ namespace TNT
     /// <summary>Class representing Comptage de mot</summary>
     public class ComptageDeMot
     {
-        private string sentence = "";
+        private string txt = "";
 
         public void Process()
         {
-            // Retirer quand fixer
-            Console.WriteLine("*WORK IN PROGRESS* NE FONCTIONNE PAS DANS TOUS LES SITUATIONS");
+            string searchTerm = "le";
 
             Console.WriteLine("Écrivez un phrase et le programme vas compter le nombre de 'le' dans la phrase");
-            try { sentence = Console.ReadLine(); }
-            catch { sentence = ""; }
+            try { txt = Console.ReadLine(); }
+            catch { txt = ""; }
 
-            int count = Regex.Matches(sentence, "le").Count;
-            Console.WriteLine("Total de LE: " + count);
+            // Convertie le string en tableau de mot  
+            string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);// Create the query.  Use ToLowerInvariant to match "data" and "Data"
+
+            // Crée un requête. Utilise ToLowerInvariant pour matcher "le" et "Le"
+            IEnumerable<string> matchQuery = from word in source
+                             where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
+                             select word;
+            
+            int wordCount = matchQuery.Count();
+            
+            Console.WriteLine("Total de LE: " + wordCount);
         }
     }
 }
