@@ -60,17 +60,13 @@
             Console.WriteLine(message);
             try
             {
-                // Placer dans le bloque try car l'assignation du prix ou montant du client entrée
-                // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
                 if (priceCheck)
-                    // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
                     price = float.Parse(Console.ReadLine());
                 else
                     client = float.Parse(Console.ReadLine());
             }
             catch
             {
-                // Si le try échoue, on rattrape l'erreur
                 if (priceCheck)
                     price = 0.0f;
                 else

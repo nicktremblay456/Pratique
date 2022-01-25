@@ -8,10 +8,6 @@
     /// <summary>Struct containing all the options in the program</summary>
     public struct ProgramData
     {
-
-        // Props, propriétés public qui nous permet d'accèder aux valeur des variables sans pouvoir la modifier.
-        // On pourrais juste mettre les variable en haut public mais je veut pas qu'on puisse modifier leur value
-        // google pour plus d'info sur les property get set
         public CaisseAutomatique1 Caisse1 { get; private set; }
         public CaisseAutomatique2 Caisse2 { get; private set; }
         public ComptageDeMot Comptage { get; private set; }
@@ -20,10 +16,10 @@
         public DevineLeChiffre2 DevineLeChiffre2 { get; private set; }
         public DevineLeChiffre3 DevineLeChiffre3 { get; private set; }
 
-        public ProgramData()// Constructor
+        public ProgramData()
         {
-            // Initialise
-            Caisse1 = new CaisseAutomatique1();// operateur new pour créer une instance de la class et ça appel la fonction constructeur
+            // Init object.
+            Caisse1 = new CaisseAutomatique1();
             Caisse2 = new CaisseAutomatique2();
             Comptage = new ComptageDeMot();
             Saisie = new SaisieSansFaille();

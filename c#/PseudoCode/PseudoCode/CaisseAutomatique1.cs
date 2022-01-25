@@ -13,17 +13,13 @@
         public void Process()
         {
             Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
-
-            // Demande a l'utilisateur d'entrée un prix et vérifie si la valeur entrée est plus grand que 0
-            // ou si c'est vraiment un nombre et non un caractere
+            // Entrée prix du produit
             GetInput(true, "Entrée le prix du produit");
             while (price <= 0)
             {
                 GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
             }
-
-            // Demande a l'utilisateur d'entrée un montant et vérifie si la valeur entrée est plus grand que 0 
-            // ou si c'est vraiment un nombre et non un caractere
+            // Entrée le montant d'argent donné par le client
             GetInput(false, "Entrée le montant d'argent que vous voulez donner");
             while (client <= 0)
             {
@@ -60,8 +56,6 @@
             Console.WriteLine(message);
             try
             {
-                // Placer dans le bloque try car l'assignation du prix ou montant du client entrée
-                // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
                 if (priceCheck)
                     price = float.Parse(Console.ReadLine());
                 else
