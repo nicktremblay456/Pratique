@@ -9,16 +9,18 @@
     public class DevineLeChiffre2
     {
         private Random random = new Random();
-        private int randNumber, userGuess, maxTry = 10;
+        private int randNumber, userGuess, maxTries;
+        private const int MAX_TRIES = 10;
 
         public void Process()
         {
+            maxTries = MAX_TRIES;
             randNumber = random.Next(1, 101);
             Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
             Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
             GetInput();
 
-            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
+            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber && maxTries != 0)
             {
                 GetInput();
             }
@@ -42,8 +44,8 @@
 
             Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
-            maxTry--;// Retire 1 vie
-            Console.WriteLine(maxTry == 0 ? "Perdu :-(" : "Il reste " + maxTry + " essai");
+            maxTries--;// Retire 1 vie
+            Console.WriteLine(maxTries == 0 ? "Perdu :-(" : "Il reste " + maxTries + " essai");
         }
     }
 }

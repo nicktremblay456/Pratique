@@ -9,12 +9,15 @@
     public class DevineLeChiffre3
     {
         private Random random = new Random();
-        private int randNumber, userGuess, maxTry = 10;
+        private int randNumber, userGuess, maxTries;
         private string endingInput = "";
         private bool isRunning = true;
 
+        private const int MaxTries = 10;
+
         public void Process()
         {
+            maxTries = MaxTries;
             randNumber = random.Next(1, 101);
             Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
             Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
@@ -24,7 +27,7 @@
             {
                 while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
                 {
-                    if (maxTry == 0) break;
+                    if (maxTries == 0) break;
                     GetInput();
                 }
 
@@ -51,10 +54,10 @@
                 return;
             }
 
-            Console.WriteLine((userGuess < randNumber && maxTry != 0) ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
+            Console.WriteLine((userGuess < randNumber && maxTries != 0) ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
-            maxTry--;
-            Console.WriteLine(maxTry == 0 ? "Perdu :-(" : "Il reste " + maxTry + " essai");
+            maxTries--;
+            Console.WriteLine(maxTries == 0 ? "Perdu :-(" : "Il reste " + maxTries + " essai");
         }
 
         private void End()
@@ -75,7 +78,7 @@
 
             if (endingInput == "y" || endingInput == "Y")
             {
-                maxTry = 10;
+                maxTries = 10;
                 endingInput = "";
                 Console.Clear();
                 Process();

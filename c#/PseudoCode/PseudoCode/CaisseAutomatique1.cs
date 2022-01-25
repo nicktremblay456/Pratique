@@ -33,7 +33,6 @@
             // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
             //while (client != prix)
             //{
-            // le ? c'est un operateur ternaire, google it ;p
             Transaction(client < price ? false : true, client < price ? price - client : client - price);
             //}
 
@@ -41,7 +40,7 @@
         }
 
         /// <summary>
-        /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
+        /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque à payer
         /// </summary>
         /// <param name="returnMoney">Mettre a vrai si on dois retourner de l'argent au client, faux si le client dois donner plus</param>
         /// <param name="amount">Le montant restant ou de surplus a payer ou redonner</param>
@@ -64,14 +63,12 @@
                 // Placer dans le bloque try car l'assignation du prix ou montant du client entrée
                 // par l'utilisateure peut etre autre chose qu'un float/int ce qui peut faire cracher le programme
                 if (priceCheck)
-                    // la fonction parse cherche un float ou int a dans le string que retourn ReadLine (input entrée par l'utilisateur)
                     price = float.Parse(Console.ReadLine());
                 else
                     client = float.Parse(Console.ReadLine());
             }
             catch
             {
-                // Si le try échoue, on rattrape l'erreur
                 if (priceCheck)
                     price = 0.0f;
                 else
