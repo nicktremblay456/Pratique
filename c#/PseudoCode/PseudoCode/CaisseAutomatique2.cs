@@ -17,13 +17,13 @@
 
             for (int i = 0; i < totalClients; i++)
             {
-                GetInput(true, "Entrée le prix du produit pour le client " + (i + 1));
+                GetInput(true, $"Entrée le prix du produit pour le client {(i + 1)}");
                 while (price <= 0)
                 {
                     GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
                 }
 
-                GetInput(false, "Entrée le montant d'argent que vous voulez que le client " + (i + 1) + " doit donner");
+                GetInput(false, $"Entrée le montant d'argent que vous voulez que le client {(i + 1)} doit donner");
                 while (client <= 0)
                 {
                     GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
@@ -35,7 +35,7 @@
                 Transaction(client < price ? false : true, client < price ? price - client : client - price);
                 //}
 
-                Console.WriteLine("Transaction terminer. Clients Restant: " + (totalClients - (i + 1)) + "\n");
+                Console.WriteLine($"Transaction terminer. Clients Restant: {(totalClients - (i + 1))}\n");
             }
         }
 
@@ -47,7 +47,7 @@
         private void Transaction(bool returnBack, float amount)
         {
             client = returnBack ? client - amount : client + amount;
-            Console.WriteLine(returnBack ? "Montant de surplus qui vous reviens: " + amount + "$" : "Montant qui vous manque a payer: " + amount + "$" + "\nVous donnez alors: " + amount + "$");
+            Console.WriteLine(returnBack ? $"Montant de surplus qui vous reviens: {amount} $" : $"Montant qui vous manque a payer: {amount} $\nVous donnez alors: {amount} $");
         }
 
         /// <summary>

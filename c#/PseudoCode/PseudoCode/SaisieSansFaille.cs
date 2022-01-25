@@ -23,7 +23,7 @@
 
         private void GetInput()
         {
-            try { input = Int32.Parse(Console.ReadLine()); }
+            try { input = int.Parse(Console.ReadLine()); }
             catch { input = 0; }
 
             Console.WriteLine((input >= 1 && input <= 150) ? "ACCEPTER" : "REFUSER \nLa valeur entrée est invalide, entrer un nombre entier entre 1 et 150");

@@ -16,7 +16,7 @@
         {
             maxTries = MAX_TRIES;
             randNumber = random.Next(1, 101);
-            Console.WriteLine("*CHEAT REPONSE* : " + randNumber);
+            Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
             Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
             GetInput();
 
@@ -38,14 +38,14 @@
 
             if (userGuess == randNumber)
             {
-                Console.WriteLine("Trouvé! :-) \nLe nombre est: " + randNumber);
+                Console.WriteLine($"Trouvé! :-) \nLe nombre est: {randNumber}");
                 return;// early return parce qu'on veut pas perdre une vie si on a trouvé la réponse
             }
 
             Console.WriteLine(userGuess < randNumber ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
 
             maxTries--;// Retire 1 vie
-            Console.WriteLine(maxTries == 0 ? "Perdu :-(" : "Il reste " + maxTries + " essai");
+            Console.WriteLine(maxTries == 0 ? $"Perdu :-(" : $"Il reste {maxTries} essai");
         }
     }
 }

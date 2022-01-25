@@ -47,7 +47,7 @@
         private void Transaction(bool returnMoney, float amount)
         {
             client = returnMoney ? client + amount : client - amount;
-            Console.WriteLine(returnMoney ? "Montant de surplus qui vous reviens: " + amount + "$" : "Montant qui vous manque a payer: " + amount + "$" + "\nVous donnez alors: " + amount + "$");
+            Console.WriteLine(returnMoney ? $"Montant de surplus qui vous reviens: {amount} $" : $"Montant qui vous manque a payer: {amount} $\nVous donnez alors: { amount} $");
         }
 
         /// <summary>

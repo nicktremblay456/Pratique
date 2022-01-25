@@ -18,8 +18,8 @@
             try { txt = Console.ReadLine(); }
             catch { txt = ""; }
 
-            // Convertie le string en tableau de mot  
-            string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);// Create the query.  Use ToLowerInvariant to match "data" and "Data"
+            // Convertie le string en tableau de mot.
+            string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
             // Crée un requête. Utilise ToLowerInvariant pour matcher "le" et "Le"
             IEnumerable<string> matchQuery = from word in source
@@ -28,7 +28,7 @@
             
             int wordCount = matchQuery.Count();
             
-            Console.WriteLine("Total de LE: " + wordCount);
+            Console.WriteLine($"Total de LE: {wordCount}");
         }
     }
 }
