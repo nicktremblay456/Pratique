@@ -9,21 +9,23 @@
     public class CaisseAutomatique2
     {
         private float client, price;
-        private int totalClients = 5;
+        private int currentClient = 1;
+        private string endingInput = "";
+        private bool isRunning = true;
 
         public void Process()
         {
             Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
 
-            for (int i = 0; i < totalClients; i++)
+            while(isRunning)
             {
-                GetInput(true, $"Entrée le prix du produit pour le client {(i + 1)}");
+                GetInput(true, $"Entrée le prix du produit pour le client {currentClient}");
                 while (price <= 0)
                 {
                     GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
                 }
 
-                GetInput(false, $"Entrée le montant d'argent que vous voulez que le client {(i + 1)} doit donner");
+                GetInput(false, $"Entrée le montant d'argent que vous voulez que le client {currentClient} doit donner");
                 while (client <= 0)
                 {
                     GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
@@ -35,7 +37,7 @@
                 Transaction(client < price ? false : true, client < price ? price - client : client - price);
                 //}
 
-                Console.WriteLine($"Transaction terminer. Clients Restant: {(totalClients - (i + 1))}\n");
+                End();
             }
         }
 
@@ -71,6 +73,33 @@
                     price = 0.0f;
                 else
                     client = 0.5f;
+            }
+        }
+
+        private void End()
+        {
+            Console.WriteLine("Entrée 'y' pour passer au client suivant ou 'n' pour arrêter et retourner au menu principale");
+            GetEndingInput();
+
+            while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
+            {
+                Console.WriteLine("La valeur entrée est invalide \n Entrée 'y' pour passer au client suivant ou 'n' pour quitter");
+                GetEndingInput();
+            }
+        }
+
+        private void GetEndingInput()
+        {
+            endingInput = Console.ReadLine();
+
+            if (endingInput == "y" || endingInput == "Y")
+            {
+                Console.WriteLine("Client suivant...");
+                currentClient++;
+            }
+            else if (endingInput == "n" || endingInput == "N")
+            {
+                isRunning = false;
             }
         }
     }
