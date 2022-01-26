@@ -12,5 +12,7 @@
         DEVINE_VERSION_1 = 5,
         DEVINE_VERSION_2 = 6,
         DEVINE_VERSION_3 = 7,
+
+        Count
     }
 }

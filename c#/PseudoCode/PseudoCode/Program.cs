@@ -1,18 +1,12 @@
 ﻿using TNT;
 
-/// <copyright file="Program.cs">
-/// Copyright © 2022 © All Rights Reserved
-/// </copyright>
-/// <author>Nicolas Tremblay</author>
-/// <date>2022/01/22 16:26 PM </date>
-/// <summary>Class representing all pseudocode in a single program</summary>
-public class Program
+public static class Program
 {
-    private ProgramData data = new ProgramData();// Data structure qui contient les sous programmes
-    private Option userChoice = Option.NONE;// un enum...
-    private bool isRunning = true;
+    private static ProgramData data = new ProgramData();// Data structure qui contient les sous programmes
+    private static Option userChoice = Option.NONE;// un enum...
+    private static bool isRunning = true;
 
-    public void Run()
+    public static void Run()
     {
         while (isRunning)
         {
@@ -20,7 +14,7 @@ public class Program
         }
     }
 
-    private void Process()
+    private static void Process()
     {
         Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.\n\n" +
                           $"{(int)Option.CAISSE_VERSION_1}: Caisse automatique VERSION 1\n" +
@@ -32,14 +26,14 @@ public class Program
                           $"{(int)Option.DEVINE_VERSION_3}: Devine le chiffre VERSION 3\n" +
                           $"{(int)Option.QUIT}: Quitter");
         GetInput();
-        while ((int)userChoice < 0 || (int)userChoice > 7)
+        while (userChoice == Option.NONE)
         {
             GetInput();
         }
         Console.Clear();
         switch (userChoice)
         {
-            case Option.QUIT: isRunning = !isRunning; break;// Arrêter le programme
+            case Option.QUIT: isRunning = false; break;// Arrêter le programme
             case Option.CAISSE_VERSION_1: data.Caisse1.Process(); break;
             case Option.CAISSE_VERSION_2: data.Caisse2.Process(); break;
             case Option.COMPTAGE_DE_MOT: data.Comptage.Process(); break;
@@ -58,16 +52,22 @@ public class Program
         }
     }
 
-    private void GetInput()
+    private static void GetInput()
     {
         try
         {
             userChoice = (Option)int.Parse(Console.ReadLine());
+            if (userChoice >= Option.Count)
+            {
+                userChoice = Option.NONE;
+            }
         }
         catch
         {
-            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
             userChoice = Option.NONE;
         }
+
+        if (userChoice == Option.NONE)
+            Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
     }
 }

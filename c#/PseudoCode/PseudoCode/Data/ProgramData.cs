@@ -1,11 +1,5 @@
 ﻿namespace TNT
 {
-    /// <copyright file="ProgramData.cs">
-    /// Copyright © 2022 © All Rights Reserved
-    /// </copyright>
-    /// <author>Nicolas Tremblay</author>
-    /// <date>2022/01/22 16:26 PM </date>
-    /// <summary>Struct containing all the options in the program</summary>
     public struct ProgramData
     {
         public CaisseAutomatique1 Caisse1 { get; private set; }
