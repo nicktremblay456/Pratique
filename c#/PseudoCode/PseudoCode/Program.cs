@@ -4,7 +4,8 @@ public static class Program
 {
     private static ProgramData data = new ProgramData();// Data structure qui contient les sous programmes
     private static Option userChoice = Option.NONE;// un enum...
-    private static bool isRunning = true;
+    private static bool isRunning = true, isConsoleInit = false;
+    private static string programName = "PseudoCode Version c#";
 
     public static void Run()
     {
@@ -14,8 +15,21 @@ public static class Program
         }
     }
 
+    private static void SetConsole()
+    {
+        if (Console.BackgroundColor != ConsoleColor.DarkBlue)
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+        if (Console.Title != programName)
+            Console.Title = programName;
+        Console.Clear();
+        isConsoleInit = true;
+    }
+
     private static void Process()
     {
+        if (!isConsoleInit)
+            SetConsole();
+
         Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.\n\n" +
                           $"{(int)Option.CAISSE_VERSION_1}: Caisse automatique VERSION 1\n" +
                           $"{(int)Option.CAISSE_VERSION_2}: Caisse automatique VERSION 2\n" +
@@ -30,10 +44,11 @@ public static class Program
         {
             GetInput();
         }
-        Console.Clear();
+        isConsoleInit = false;// Remet a false pour qu'au retour au menu princile la fonction SetConsole soit caller pour remettre le background color du menu principale.
+        Console.Beep();// Fait un "beep" pour confirmer que le choix entrée est valide
         switch (userChoice)
         {
-            case Option.QUIT: isRunning = false; break;// Arrêter le programme
+            case Option.QUIT: isRunning = false; Console.Clear(); break;// Arrêter le programme
             case Option.CAISSE_VERSION_1: data.Caisse1.Process(); break;
             case Option.CAISSE_VERSION_2: data.Caisse2.Process(); break;
             case Option.COMPTAGE_DE_MOT: data.Comptage.Process(); break;

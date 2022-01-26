@@ -5,21 +5,32 @@
         private float client, price;
         private int currentClient = 1;
         private string endingInput = "";
-        private bool isRunning = true;
+        private bool isRunning = true, isConsoleInit = false;
+
+        private void SetConsole()
+        {
+            if (Console.BackgroundColor != ConsoleColor.DarkGreen)
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.Clear();
+            isConsoleInit = true;
+        }
 
         public void Process()
         {
+            if (!isConsoleInit)
+                SetConsole();
+
             Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
 
             while(isRunning)
             {
-                GetInput(true, $"Entrée le prix du produit pour le client {currentClient}");
+                GetInput(true, $"Entrer le prix du produit pour le client {currentClient}");
                 while (price <= 0)
                 {
                     GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
                 }
 
-                GetInput(false, $"Entrée le montant d'argent que vous voulez que le client {currentClient} doit donner");
+                GetInput(false, $"Entrer le montant d'argent que vous voulez que le client {currentClient} donne");
                 while (client <= 0)
                 {
                     GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
@@ -93,6 +104,7 @@
             }
             else if (endingInput == "n" || endingInput == "N")
             {
+                isConsoleInit = false;
                 isRunning = false;
             }
         }

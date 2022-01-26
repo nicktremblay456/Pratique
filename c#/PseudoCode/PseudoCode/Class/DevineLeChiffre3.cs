@@ -4,18 +4,29 @@
     {
         private int randNumber, userGuess, maxTries;
         private string endingInput = "";
-        private bool isRunning = true;
+        private bool isRunning = true, isConsoleInit = false;
 
         private const int MaxTries = 10;
 
+        private void SetConsole()
+        {
+            if (Console.BackgroundColor != ConsoleColor.DarkCyan)
+                Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.Clear();
+            isConsoleInit = true;
+        }
+
         public void Process()
         {
+            if (!isConsoleInit)
+                SetConsole();
+
             Random random = new Random();
             maxTries = MaxTries;
             randNumber = random.Next(1, 101);
 
             Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
-            Console.WriteLine("Entrer un nombre en 1 et 100, vous avez droit à 10 essais");
+            Console.WriteLine("Entrer un nombre entre 1 et 100, vous avez droit à 10 essais");
             GetInput();
 
             while (isRunning)
@@ -38,7 +49,7 @@
             }
             catch
             {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 1 et 100");
+                Console.WriteLine("La valeur entrée est invalide, entrer un nombre entre 1 et 100");
                 userGuess = 0;
                 return;
             }
@@ -49,7 +60,7 @@
                 return;
             }
 
-            Console.WriteLine((userGuess < randNumber && maxTries != 0) ? "Plus petit, esseyer un nombre plus grand" : "Plus grand, esseyer un nombre plus petit");
+            Console.WriteLine((userGuess < randNumber && maxTries != 0) ? "Plus petit, essayer un nombre plus grand" : "Plus grand, essayer un nombre plus petit");
 
             maxTries--;
             Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essai");
@@ -57,12 +68,12 @@
 
         private void End()
         {
-            Console.WriteLine("Entrée y pour commencer une nouvelle partie ou n pour retourner au menu principale");
+            Console.WriteLine("Entrer y pour commencer une nouvelle partie ou n pour retourner au menu principale");
             GetEndingInput();
 
             while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
             {
-                Console.WriteLine("La valeur entrée est invalide \n Entrée y pour commencer une nouvelle partie ou n pour quitter");
+                Console.WriteLine("La valeur entrée est invalide \n Entrer y pour commencer une nouvelle partie ou n pour quitter");
                 GetEndingInput();
             }
         }
@@ -80,6 +91,7 @@
             }
             else if (endingInput == "n" || endingInput == "N")
             {
+                isConsoleInit = false;
                 isRunning = false;
             }
         }

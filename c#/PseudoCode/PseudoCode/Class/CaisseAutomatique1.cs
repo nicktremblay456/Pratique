@@ -3,18 +3,30 @@
     public class CaisseAutomatique1
     {
         private float price, client;
+        private bool isConsoleInit = false;
+
+        private void SetConsole()
+        {
+            if (Console.BackgroundColor != ConsoleColor.DarkGreen)
+                Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.Clear();
+            isConsoleInit = true;
+        }
 
         public void Process()
         {
+            if (!isConsoleInit)
+                SetConsole();
+
             Console.WriteLine("Pour les montants decimaux, utiliser la ',' a la place du '.' \n");
             // Entrée prix du produit
-            GetInput(true, "Entrée le prix du produit");
+            GetInput(true, "Entrer le prix du produit");
             while (price <= 0)
             {
                 GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
             }
             // Entrée le montant d'argent donné par le client
-            GetInput(false, "Entrée le montant d'argent que vous voulez donner");
+            GetInput(false, "Entrer le montant d'argent que vous voulez que le client donne");
             while (client <= 0)
             {
                 GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
@@ -27,6 +39,8 @@
             //}
 
             Console.WriteLine("Transaction terminée");
+
+            isConsoleInit = false;
         }
 
         /// <summary>

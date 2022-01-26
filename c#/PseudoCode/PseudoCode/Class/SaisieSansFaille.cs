@@ -3,9 +3,21 @@
     public class SaisieSansFaille
     {
         private int input;
+        private bool isConsoleInit = false;
+
+        private void SetConsole()
+        {
+            if (Console.BackgroundColor != ConsoleColor.DarkRed)
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+            Console.Clear();
+            isConsoleInit = true;
+        }
 
         public void Process()
         {
+            if (!isConsoleInit)
+                SetConsole();
+
             Console.WriteLine("Entrer un nombre entier entre 1 et 150");
             GetInput();
 
@@ -13,6 +25,8 @@
             {
                 GetInput();
             }
+
+            isConsoleInit = false;
         }
 
         private void GetInput()

@@ -3,9 +3,21 @@
     public class ComptageDeMot
     {
         private string txt = "";
+        private bool isConsoleInit = false;
+
+        private void SetConsole()
+        {
+            if (Console.BackgroundColor != ConsoleColor.DarkGray)
+                Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.Clear();
+            isConsoleInit = true;
+        }
 
         public void Process()
         {
+            if (!isConsoleInit)
+                SetConsole();
+
             string searchTerm = "le";
 
             Console.WriteLine("Écrivez une phrase et le programme vas compter le nombre de mot 'le' dans la phrase");
@@ -23,6 +35,8 @@
             int wordCount = matchQuery.Count();
             
             Console.WriteLine($"Total de LE: {wordCount}");
+
+            isConsoleInit = false;
         }
     }
 }
