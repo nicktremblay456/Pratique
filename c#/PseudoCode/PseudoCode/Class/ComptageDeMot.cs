@@ -8,7 +8,7 @@
         private void SetConsole()
         {
             if (Console.BackgroundColor != ConsoleColor.DarkGray)
-                Console.BackgroundColor = ConsoleColor.DarkGray;
+                Program.SetBackgroundColor(ConsoleColor.DarkGray);
             Console.Clear();
             isConsoleInit = true;
         }
@@ -24,13 +24,13 @@
             try { txt = Console.ReadLine(); }
             catch { txt = ""; }
 
-            // Convertie le string en tableau de mot.
+            // Convertie la phrase entrée par l'utilisateur en tableau de mots
             string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // Crée un requête. Utilise ToLowerInvariant pour matcher "le" et "Le"
-            IEnumerable<string> matchQuery = from word in source
-                             where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()
-                             select word;
+            // 
+            IEnumerable<string> matchQuery = from word in source// from word in source = foreach(String word in source) 
+                             where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()// if (word.tolowercase == searchterm.tolowercase)
+                             select word;// Prend le word == a "le" et l'ajoute au tableau matchQuery
             
             int wordCount = matchQuery.Count();
             

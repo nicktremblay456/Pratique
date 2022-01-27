@@ -8,7 +8,7 @@
         private void SetConsole()
         {
             if (Console.BackgroundColor != ConsoleColor.DarkRed)
-                Console.BackgroundColor = ConsoleColor.DarkRed;
+                Program.SetBackgroundColor(ConsoleColor.DarkRed);
             Console.Clear();
             isConsoleInit = true;
         }

@@ -10,7 +10,7 @@
         private void SetConsole()
         {
             if (Console.BackgroundColor != ConsoleColor.DarkGreen)
-                Console.BackgroundColor = ConsoleColor.DarkGreen;
+                Program.SetBackgroundColor(ConsoleColor.DarkGreen);
             Console.Clear();
             isConsoleInit = true;
         }
