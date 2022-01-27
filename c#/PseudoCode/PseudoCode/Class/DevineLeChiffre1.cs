@@ -1,21 +1,8 @@
 ﻿namespace TNT
 {
-    public class DevineLeChiffre1
+    public class DevineLeChiffre1 : Devine
     {
-        private Random random = new Random();
-        private int randNumber, userGuess;
-        private bool isConsoleInit = false;
-
-
-        private void SetConsole()
-        {
-            if (Console.BackgroundColor != ConsoleColor.DarkCyan)
-                Program.SetBackgroundColor(ConsoleColor.DarkCyan);
-            Console.Clear();
-            isConsoleInit = true;
-        }
-
-        public void Process()
+        public override void Process()
         {
             if (!isConsoleInit)
                 SetConsole();
@@ -33,25 +20,6 @@
             }
 
             isConsoleInit = false;
-        }
-
-        private void GetInput()
-        {
-            try { userGuess = int.Parse(Console.ReadLine()); }
-            catch
-            {
-                Console.WriteLine("La valeur entrée est invalide, entrer un nombre entre 1 et 100");
-                userGuess = 0;
-                return;
-            }
-
-            if (userGuess == randNumber)
-            {
-                Console.WriteLine($"Trouvé! :-) \nLe nombre est: {randNumber}");
-                return;
-            }
-
-            Console.WriteLine(userGuess < randNumber ? "Plus petit, essayer un nombre plus grand" : "Plus grand, essayer un nombre plus petit");
         }
     }
 }

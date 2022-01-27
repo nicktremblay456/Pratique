@@ -27,7 +27,6 @@
             // Convertie la phrase entrée par l'utilisateur en tableau de mots
             string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            // 
             IEnumerable<string> matchQuery = from word in source// from word in source = foreach(String word in source) 
                              where word.ToLowerInvariant() == searchTerm.ToLowerInvariant()// if (word.tolowercase == searchterm.tolowercase)
                              select word;// Prend le word == a "le" et l'ajoute au tableau matchQuery

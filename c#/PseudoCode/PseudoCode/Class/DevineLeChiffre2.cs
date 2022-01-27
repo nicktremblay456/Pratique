@@ -1,22 +1,11 @@
 ﻿namespace TNT
 {
-    public class DevineLeChiffre2
+    public class DevineLeChiffre2 : Devine
     {
-        private Random random = new Random();
-        private int randNumber, userGuess, maxTries;
-        private bool isConsoleInit = false;
-        
+        private int maxTries;
         private const int MAX_TRIES = 10;
 
-        private void SetConsole()
-        {
-            if (Console.BackgroundColor != ConsoleColor.DarkCyan)
-                Program.SetBackgroundColor(ConsoleColor.DarkCyan);
-            Console.Clear();
-            isConsoleInit = true;
-        }
-
-        public void Process()
+        public override void Process()
         {
             if (!isConsoleInit)
                 SetConsole();
@@ -35,7 +24,7 @@
             isConsoleInit = false;
         }
 
-        private void GetInput()
+        protected override void GetInput()
         {
             try { userGuess = Int32.Parse(Console.ReadLine()); }
             catch
