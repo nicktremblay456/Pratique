@@ -21,8 +21,7 @@
             string searchTerm = "le";
 
             Console.WriteLine("Écrivez une phrase et le programme vas compter le nombre de mot 'le' dans la phrase");
-            try { txt = Console.ReadLine(); }
-            catch { txt = ""; }
+            txt = Console.ReadLine();
 
             // Convertie la phrase entrée par l'utilisateur en tableau de mots
             string[] source = txt.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' }, StringSplitOptions.RemoveEmptyEntries);

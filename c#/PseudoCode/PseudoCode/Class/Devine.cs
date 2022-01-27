@@ -2,19 +2,16 @@
 {
     public class Devine
     {
-        protected Random random = new Random();
-        protected int randNumber, userGuess;
-        protected bool isConsoleInit = false, isRunning = true;
+        private Random random = new Random();
+        private int randNumber, userGuess;
+        private bool isConsoleInit = false, isRunning = true;
         private int maxTries;
-        private const int MAX_TRIES = 10;
         private string endingInput = "";
-
+        
         private ConsoleColor color = ConsoleColor.DarkMagenta;
+        
+        private const int MAX_TRIES = 10;
 
-        public virtual void Process()
-        {
-
-        }
 
         public void Process_Version_1()
         {
@@ -47,8 +44,10 @@
             Console.WriteLine("Entrer un nombre entre 1 et 100, vous avez droit à 10 essais");
             GetInput(isFirstVersion: false);
 
-            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber && maxTries != 0)
+            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
+                if (maxTries == 0)
+                    break;
                 GetInput(isFirstVersion: false);
             }
 
@@ -79,13 +78,15 @@
             }
         }
 
-        protected void SetConsole()
+        private void SetConsole()
         {
             Program.SetBackgroundColor(color);
+            if (!isRunning)
+                isRunning = true;
             isConsoleInit = true;
         }
 
-        protected virtual void GetInput(bool isFirstVersion)
+        private void GetInput(bool isFirstVersion)
         {
             try { userGuess = int.Parse(Console.ReadLine()); }
             catch
@@ -131,7 +132,7 @@
                 maxTries = 10;
                 endingInput = "";
                 Console.Clear();
-                Process();
+                Process_Version_3();
             }
             else if (endingInput == "n" || endingInput == "N")
             {
