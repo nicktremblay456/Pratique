@@ -5,11 +5,11 @@
         private string txt = "";
         private bool isConsoleInit = false;
 
+        private ConsoleColor color = ConsoleColor.DarkGray;
+
         private void SetConsole()
         {
-            if (Console.BackgroundColor != ConsoleColor.DarkGray)
-                Program.SetBackgroundColor(ConsoleColor.DarkGray);
-            Console.Clear();
+            Program.SetBackgroundColor(color);
             isConsoleInit = true;
         }
 

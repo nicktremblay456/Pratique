@@ -16,20 +16,19 @@ public static class Program
         }
     }
 
-    private static void SetConsole()
+    private static void SetMainMenuConsole()
     {
         if (Console.BackgroundColor != ConsoleColor.DarkBlue)
             SetBackgroundColor(ConsoleColor.DarkBlue);
         if (Console.Title != programName)
             Console.Title = programName;
-        Console.Clear();
         isConsoleInit = true;
     }
 
     private static void Process()
     {
         if (!isConsoleInit)
-            SetConsole();
+            SetMainMenuConsole();
 
         Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.\n\n" +
                           $"{(int)Option.CAISSE_VERSION_1}: Caisse automatique VERSION 1\n" +
@@ -50,13 +49,13 @@ public static class Program
         switch (userChoice)
         {
             case Option.QUIT: Stop(); break;// Arrêter le programme
-            case Option.CAISSE_VERSION_1: data.Caisse1.Process(); break;
-            case Option.CAISSE_VERSION_2: data.Caisse2.Process(); break;
+            case Option.CAISSE_VERSION_1: data.Caisse.Process_Version_1(); break;
+            case Option.CAISSE_VERSION_2: data.Caisse.Process_Version_2(); break;
             case Option.COMPTAGE_DE_MOT: data.Comptage.Process(); break;
             case Option.SAISIE_SANS_FAILLE: data.Saisie.Process(); break;
-            case Option.DEVINE_VERSION_1: data.DevineLeChiffre1.Process(); break;
-            case Option.DEVINE_VERSION_2: data.DevineLeChiffre2.Process(); break;
-            case Option.DEVINE_VERSION_3: data.DevineLeChiffre3.Process(); break;
+            case Option.DEVINE_VERSION_1: data.Devine.Process_Version_1(); break;
+            case Option.DEVINE_VERSION_2: data.Devine.Process_Version_2(); break;
+            case Option.DEVINE_VERSION_3: data.Devine.Process_Version_3(); break;
         }
 
         if (isRunning)
@@ -71,7 +70,9 @@ public static class Program
 
     public static void SetBackgroundColor(ConsoleColor color)
     {
-        Console.BackgroundColor = color;
+        if (Console.BackgroundColor != color)
+            Console.BackgroundColor = color;
+        Console.Clear();
     }
 
     private static void GetInput()

@@ -5,11 +5,11 @@
         private int input;
         private bool isConsoleInit = false;
 
+        private ConsoleColor color = ConsoleColor.DarkRed;
+
         private void SetConsole()
         {
-            if (Console.BackgroundColor != ConsoleColor.DarkRed)
-                Program.SetBackgroundColor(ConsoleColor.DarkRed);
-            Console.Clear();
+            Program.SetBackgroundColor(color);
             isConsoleInit = true;
         }
 
