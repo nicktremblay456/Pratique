@@ -7,12 +7,9 @@
 
         private ConsoleColor color = ConsoleColor.DarkGray;
 
-        private void SetConsole()
-        {
-            Program.SetBackgroundColor(color);
-            isConsoleInit = true;
-        }
-
+        /// <summary>
+        /// Comptage de mot
+        /// </summary>
         public void Process()
         {
             if (!isConsoleInit)
@@ -35,6 +32,14 @@
             Console.WriteLine($"Total de LE: {wordCount}");
 
             isConsoleInit = false;
+        }
+        /// <summary>
+        /// Change la couleur du background de la console
+        /// </summary>
+        private void SetConsole()
+        {
+            Program.SetBackgroundColor(color);
+            isConsoleInit = true;
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     public class Devine
     {
+        #region Variables/Const
         private Random random = new Random();
         private int randNumber, userGuess;
         private bool isConsoleInit = false, isRunning = true;
@@ -11,15 +12,18 @@
         private ConsoleColor color = ConsoleColor.DarkMagenta;
         
         private const int MAX_TRIES = 10;
+        #endregion
 
-
+        /// <summary>
+        /// Devine le Chiffre Version 1
+        /// </summary>
         public void Process_Version_1()
         {
             if (!isConsoleInit)
                 SetConsole();
 
             // 101 parce que le 2eme chiffre en parametre de la fonction Next est exclusif
-            // ce qui fait qu'il aurais génerer un nombre entre 1 et 99.
+            // ce qui fait qu'il aurais génerer un nombre entre 1 et 99 si on aurrais mis Next(1, 100).
             randNumber = random.Next(1, 101);
             Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
             Console.WriteLine("Entrer un nombre entre 1 et 100");
@@ -32,7 +36,9 @@
 
             isConsoleInit = false;
         }
-
+        /// <summary>
+        /// Devine le Chiffre Version 2
+        /// </summary>
         public void Process_Version_2()
         {
             if (!isConsoleInit)
@@ -53,7 +59,9 @@
 
             isConsoleInit = false;
         }
-
+        /// <summary>
+        /// Devine le Chiffre Version 3
+        /// </summary>
         public void Process_Version_3()
         {
             if (!isConsoleInit)
@@ -77,7 +85,9 @@
                 End();
             }
         }
-
+        /// <summary>
+        /// Change la couleur du background de la console
+        /// </summary>
         private void SetConsole()
         {
             Program.SetBackgroundColor(color);
@@ -85,7 +95,11 @@
                 isRunning = true;
             isConsoleInit = true;
         }
-
+        /// <summary>
+        /// Prend l'input de l'utilisateur, effectue les vérifications et affiche un message dans la console pour donner un indice.
+        /// Il peut aussi gêrer le nombre d'essais de l'utilisateur.
+        /// </summary>
+        /// <param name="isFirstVersion">Si il est true alors il ne comptera pas le nombre d'essai.</param>
         private void GetInput(bool isFirstVersion)
         {
             try { userGuess = int.Parse(Console.ReadLine()); }
@@ -110,7 +124,9 @@
                 Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essai");
             }
         }
-
+        /// <summary>
+        /// Prend l'input de fin de partie pour demander si on refait une partie ou si on retourne au menu principale
+        /// </summary>
         private void End()
         {
             Console.WriteLine("Entrer y pour commencer une nouvelle partie ou n pour retourner au menu principale");
@@ -122,7 +138,9 @@
                 GetEndingInput();
             }
         }
-
+        /// <summary>
+        /// Vérifie l'input entrée. si input = "y" => continue si non input == "n" break le while loop et retourne au menu principale.
+        /// </summary>
         private void GetEndingInput()
         {
             endingInput = Console.ReadLine();

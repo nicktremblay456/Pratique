@@ -7,15 +7,19 @@ public static class Program
     private static bool isRunning = true, isConsoleInit = false;
     private static string programName = "PseudoCode Version c#";
 
+    /// <summary>
+    /// Fait rouler le programme tant que isRunning = true
+    /// </summary>
     public static void Run()
     {
-        //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
         while (isRunning)
         {
             Process();
         }
     }
-
+    /// <summary>
+    /// Parametre du menu principale et de la fenêtre
+    /// </summary>
     private static void SetMainMenuConsole()
     {
         if (Console.BackgroundColor != ConsoleColor.DarkBlue)
@@ -24,7 +28,9 @@ public static class Program
             Console.Title = programName;
         isConsoleInit = true;
     }
-
+    /// <summary>
+    /// Fait rouler le sous programme choisi par l'utilisateur.
+    /// </summary>
     private static void Process()
     {
         if (!isConsoleInit)
@@ -67,14 +73,19 @@ public static class Program
             Console.Clear();
         }
     }
-
+    /// <summary>
+    /// Permet de cjanger la couleur du background de la console.
+    /// </summary>
+    /// <param name="color">La couleure qu'on veut utiliser</param>
     public static void SetBackgroundColor(ConsoleColor color)
     {
         if (Console.BackgroundColor != color)
             Console.BackgroundColor = color;
         Console.Clear();
     }
-
+    /// <summary>
+    /// Prend l'input de l'utilisateur pour connaitre son choix.
+    /// </summary>
     private static void GetInput()
     {
         try
@@ -93,7 +104,9 @@ public static class Program
         if (userChoice == Option.NONE)
             Console.WriteLine("La valeur entrée est invalide, entrer un nombre en 0 et 7");
     }
-
+    /// <summary>
+    /// Arrête le programme
+    /// </summary>
     private static void Stop()
     {
         isRunning = false;

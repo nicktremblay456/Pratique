@@ -2,13 +2,18 @@
 {
     public class Caisse
     {
+        #region Variables/Const
         protected float client, price;
         protected bool isConsoleInit = false, isRunning = true;
         private int currentClient = 1;
         private string endingInput = "";
 
         private ConsoleColor color = ConsoleColor.DarkGreen;
-
+        #endregion
+        
+        /// <summary>
+        /// Caisse Automatique Version 1
+        /// </summary>
         public void Process_Version_1()
         {
             if (!isConsoleInit)
@@ -38,7 +43,9 @@
 
             isConsoleInit = false;
         }
-
+        /// <summary>
+        /// Caisse Automatique Version 2
+        /// </summary>
         public void Process_Version_2()
         {
             if (!isConsoleInit)
@@ -69,13 +76,14 @@
                 End();
             }
         }
-
+        /// <summary>
+        /// Change la couleur du background de la console.
+        /// </summary>
         private void SetConsole()
         {
             Program.SetBackgroundColor(color);
             isConsoleInit = true;
         }
-
         /// <summary>
         /// Effectue les calcules et détermine si il y a de l'argent a retourner ou si il en manque
         /// </summary>
@@ -86,7 +94,6 @@
             client = returnBack ? client - amount : client + amount;
             Console.WriteLine(returnBack ? $"Montant de surplus qui vous reviens: {amount} $" : $"Montant qui vous manque a payer: {amount} $\nVous donnez alors: {amount} $");
         }
-
         /// <summary>
         /// Prend l'input de l'utilisateur
         /// </summary>
@@ -110,25 +117,30 @@
                     client = 0.0f;
             }
         }
-
+        /// <summary>
+        /// Prend l'input de fin de partie pour demander si on refait une partie ou si on retourne au menu principale
+        /// </summary>
         private void End()
         {
-            Console.WriteLine("Transaction terminée.\nEntrée 'y' pour passer au client suivant ou 'n' pour arrêter et retourner au menu principale");
+            Console.WriteLine("Transaction terminée.\nEntrer 'y' pour passer au client suivant ou 'n' pour arrêter et retourner au menu principale");
             GetEndingInput();
 
             while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
             {
-                Console.WriteLine("La valeur entrée est invalide \n Entrée 'y' pour passer au client suivant ou 'n' pour quitter");
+                Console.WriteLine("La valeur entrée est invalide \nEntrer 'y' pour passer au client suivant ou 'n' pour quitter");
                 GetEndingInput();
             }
         }
-
+        /// <summary>
+        /// Vérifie l'input entrée. si input = "y" => continue si non input == "n" break le while loop et retourne au menu principale.
+        /// </summary>
         private void GetEndingInput()
         {
             endingInput = Console.ReadLine();
 
             if (endingInput == "y" || endingInput == "Y")
             {
+                Console.Clear();
                 Console.WriteLine("Client suivant...");
                 currentClient++;
             }
