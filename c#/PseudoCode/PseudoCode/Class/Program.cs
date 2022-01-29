@@ -36,14 +36,11 @@ public static class Program
         if (!isConsoleInit)
             SetMainMenuConsole();
 
-        Console.WriteLine("Entrer 0, 1, 2, 3, 4, 5, 6 ou 7 pour choisir quoi faire.\n\n" +
-                          $"{(int)Option.CAISSE_VERSION_1}: Caisse automatique VERSION 1\n" +
-                          $"{(int)Option.CAISSE_VERSION_2}: Caisse automatique VERSION 2\n" +
+        Console.WriteLine("Entrer 0, 1, 2, 3, ou 4 pour choisir quoi faire.\n\n" +
+                          $"{(int)Option.CAISSE}: Caisse automatique\n" +
                           $"{(int)Option.COMPTAGE_DE_MOT}: Comptage de mot\n" +
                           $"{(int)Option.SAISIE_SANS_FAILLE}: Saisie sans faille\n" +
-                          $"{(int)Option.DEVINE_VERSION_1}: Devine le chiffre VERSION 1\n" +
-                          $"{(int)Option.DEVINE_VERSION_2}: Devine le chiffre VERSION 2\n" +
-                          $"{(int)Option.DEVINE_VERSION_3}: Devine le chiffre VERSION 3\n" +
+                          $"{(int)Option.DEVINE}: Devine le chiffre\n" +
                           $"{(int)Option.QUIT}: Quitter");
         GetInput();
         while (userChoice == Option.NONE)
@@ -55,13 +52,10 @@ public static class Program
         switch (userChoice)
         {
             case Option.QUIT: Stop(); break;// Arrêter le programme
-            case Option.CAISSE_VERSION_1: data.Caisse.Process_Version_1(); break;
-            case Option.CAISSE_VERSION_2: data.Caisse.Process_Version_2(); break;
+            case Option.CAISSE: data.Caisse.Process(); break;
             case Option.COMPTAGE_DE_MOT: data.Comptage.Process(); break;
             case Option.SAISIE_SANS_FAILLE: data.Saisie.Process(); break;
-            case Option.DEVINE_VERSION_1: data.Devine.Process_Version_1(); break;
-            case Option.DEVINE_VERSION_2: data.Devine.Process_Version_2(); break;
-            case Option.DEVINE_VERSION_3: data.Devine.Process_Version_3(); break;
+            case Option.DEVINE: data.Devine.Process(); break;
         }
 
         if (isRunning)
@@ -91,7 +85,7 @@ public static class Program
         try
         {
             userChoice = (Option)int.Parse(Console.ReadLine());
-            if (userChoice >= Option.Count)
+            if (userChoice >= Option.Count || userChoice < Option.NONE)
             {
                 userChoice = Option.NONE;
             }

@@ -15,54 +15,9 @@
         #endregion
 
         /// <summary>
-        /// Devine le Chiffre Version 1
+        /// Fonction traitement
         /// </summary>
-        public void Process_Version_1()
-        {
-            if (!isConsoleInit)
-                SetConsole();
-
-            // 101 parce que le 2eme chiffre en parametre de la fonction Next est exclusif
-            // ce qui fait qu'il aurais génerer un nombre entre 1 et 99 si on aurrais mis Next(1, 100).
-            randNumber = random.Next(1, 101);
-            Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
-            Console.WriteLine("Entrer un nombre entre 1 et 100");
-            GetInput(isFirstVersion: true);
-
-            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
-            {
-                GetInput(isFirstVersion: true);
-            }
-
-            isConsoleInit = false;
-        }
-        /// <summary>
-        /// Devine le Chiffre Version 2
-        /// </summary>
-        public void Process_Version_2()
-        {
-            if (!isConsoleInit)
-                SetConsole();
-
-            maxTries = MAX_TRIES;
-            randNumber = random.Next(1, 101);
-            Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
-            Console.WriteLine("Entrer un nombre entre 1 et 100, vous avez droit à 10 essais");
-            GetInput(isFirstVersion: false);
-
-            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
-            {
-                if (maxTries == 0)
-                    break;
-                GetInput(isFirstVersion: false);
-            }
-
-            isConsoleInit = false;
-        }
-        /// <summary>
-        /// Devine le Chiffre Version 3
-        /// </summary>
-        public void Process_Version_3()
+        public void Process()
         {
             if (!isConsoleInit)
                 SetConsole();
@@ -116,7 +71,7 @@
             if (!isFirstVersion)
             {
                 maxTries--;
-                Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essai");
+                Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essais");
             }
         }
         /// <summary>
@@ -129,7 +84,7 @@
 
             while (endingInput != "y" && endingInput != "Y" && endingInput != "n" && endingInput != "N")
             {
-                Console.WriteLine("La valeur entrée est invalide \n Entrer y pour commencer une nouvelle partie ou n pour quitter");
+                Console.WriteLine("La valeur entrée est invalide \n Entrer 'y' pour commencer une nouvelle partie ou 'n' pour quitter");
                 GetEndingInput();
             }
         }
@@ -142,10 +97,10 @@
 
             if (endingInput == "y" || endingInput == "Y")
             {
-                maxTries = 10;
+                maxTries = MAX_TRIES;
                 endingInput = "";
                 Console.Clear();
-                Process_Version_3();
+                Process();
             }
             else if (endingInput == "n" || endingInput == "N")
             {
