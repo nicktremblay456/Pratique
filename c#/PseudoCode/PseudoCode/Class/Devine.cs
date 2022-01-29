@@ -5,7 +5,7 @@
         #region Variables/Const
         private Random random = new Random();
         private int randNumber, userGuess;
-        private bool isConsoleInit = false, isRunning = true;
+        private bool isConsoleInit = false;
         private int maxTries;
         private string endingInput = "";
         
@@ -74,16 +74,13 @@
             Console.WriteLine("Entrer un nombre entre 1 et 100, vous avez droit à 10 essais");
             GetInput(isFirstVersion: false);
 
-            while (isRunning)
+            while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
-                while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
-                {
-                    if (maxTries == 0) break;
-                    GetInput(isFirstVersion: false);
-                }
-
-                End();
+                if (maxTries == 0) break;
+                GetInput(isFirstVersion: false);
             }
+
+            End();
         }
         /// <summary>
         /// Change la couleur du background de la console
@@ -91,8 +88,6 @@
         private void SetConsole()
         {
             Program.SetBackgroundColor(color);
-            if (!isRunning)
-                isRunning = true;
             isConsoleInit = true;
         }
         /// <summary>
@@ -155,7 +150,6 @@
             else if (endingInput == "n" || endingInput == "N")
             {
                 isConsoleInit = false;
-                isRunning = false;
             }
         }
     }
