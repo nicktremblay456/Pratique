@@ -1,10 +1,12 @@
-import CaisseAutomatique, SaisieSansFaille, DevineLeChiffre
+from CaisseAutomatique import CaisseAutomatique
+from SaisieSansFaille import SaisieSansFaille
+from DevineLeChiffre import DevineLeChiffre
 
 class Program:
     def __init__(self):
-        self.caisse = CaisseAutomatique.CaisseAutomatique()
-        self.saisie = SaisieSansFaille.SaisieSansFaille()
-        self.devine = DevineLeChiffre.DevineLeChiffre()
+        self.caisse = CaisseAutomatique()
+        self.saisie = SaisieSansFaille()
+        self.devine = DevineLeChiffre()
         self.isRunning = True
         self.userChoice = -1
 
@@ -15,14 +17,14 @@ class Program:
     def __process(self):
         print("Entrer 0, 1, 2, ou 3 pour choisir quoi faire.\n\n" +
               "1: Caisse automatique\n" +
-              #"{(int)Option.COMPTAGE_DE_MOT}: Comptage de mot\n" +
+              #"2: Comptage de mot\n" +
               "2: Saisie sans faille\n" +
               "3: Devine le chiffre\n" +
               "0: Quitter")
         self.__getInput()
         while self.userChoice == -1:
             self.__getInput()
-            
+           
         if self.userChoice == 0: self.isRunning = False
         elif self.userChoice == 1: self.caisse.process()
         elif self.userChoice == 2: self.saisie.process()

@@ -1,7 +1,7 @@
-import Program
+from Program import Program
 
 def main():
-    program = Program.Program()
+    program = Program()
     program.run()
 
 main()
