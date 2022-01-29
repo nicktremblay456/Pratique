@@ -22,7 +22,7 @@ class Program:
         self.__getInput()
         while self.userChoice == -1:
             self.__getInput()
-
+            
         if self.userChoice == 0: self.isRunning = False
         elif self.userChoice == 1: self.caisse.process()
         elif self.userChoice == 2: self.saisie.process()
@@ -30,7 +30,6 @@ class Program:
 
         if self.isRunning:
             input("\nAppuyez sur une touche pour revenir au menu principale...")
-
 
     def __getInput(self):
         try:

@@ -15,7 +15,7 @@ class DevineLeChiffre:
         self.__getInput()
 
         while self.userGuess < 1 or self.userGuess > 100 or self.userGuess != self.randNumber:
-            #if self.maxTries == 0: break
+            if self.maxTries == 0: break
             self.__getInput()
 
         self.__end()

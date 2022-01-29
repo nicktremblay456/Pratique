@@ -7,7 +7,7 @@ class CaisseAutomatique:
         self.endingInput = ""
 
     def process(self):
-        print("Pour les montants decimaux, utiliser la ',' a la place du '.' \n")
+        print("Pour les montants decimaux, utiliser le '.' a la place de la ','\n")
 
         while self.isRunning:
             #Entrer le prix du produit
@@ -36,7 +36,6 @@ class CaisseAutomatique:
                 self.client = 0
 
     def __transaction(self, returnBack, amount):
-        global client
         if returnBack:
             self.client - amount
             print("Montant de surplus qui vous reviens: $", amount)

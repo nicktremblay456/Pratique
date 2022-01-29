@@ -22,6 +22,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CaisseAutomatique.py" />
+    <Compile Include="ComptageDeMot.py" />
     <Compile Include="DevineLeChiffre.py" />
     <Compile Include="Program.py" />
     <Compile Include="PseudoCode.py" />
