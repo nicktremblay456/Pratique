@@ -5,7 +5,7 @@
         #region Variables/Const
         private Random random = new Random();
         private int randNumber, userGuess;
-        private bool isConsoleInit = false;
+        private bool isConsoleInit = false, isInvinsible = false;
         private int maxTries;
         private string endingInput = "";
         
@@ -25,14 +25,13 @@
             maxTries = MAX_TRIES;
             randNumber = random.Next(1, 101);
 
-            Console.WriteLine($"*CHEAT REPONSE* : {randNumber}");
-            Console.WriteLine("Entrer un nombre entre 1 et 100, vous avez droit à 10 essais");
-            GetInput(isFirstVersion: false);
+            Console.WriteLine($"Entrer un nombre entre 1 et 100, vous avez droit à {MAX_TRIES} essais");
+            GetInput();
 
             while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
                 if (maxTries == 0) break;
-                GetInput(isFirstVersion: false);
+                GetInput();
             }
 
             End();
@@ -49,10 +48,18 @@
         /// Prend l'input de l'utilisateur, effectue les vérifications et affiche un message dans la console pour donner un indice.
         /// Il peut aussi gêrer le nombre d'essais de l'utilisateur.
         /// </summary>
-        /// <param name="isFirstVersion">Si il est true alors il ne comptera pas le nombre d'essai.</param>
-        private void GetInput(bool isFirstVersion)
+        private void GetInput()
         {
-            try { userGuess = int.Parse(Console.ReadLine()); }
+            try 
+            { 
+                userGuess = int.Parse(Console.ReadLine());
+                if (userGuess == -1)// Cheat code commande
+                {
+                    Cheat();
+                    userGuess = 0;
+                    return;
+                }
+            }
             catch
             {
                 Console.WriteLine("La valeur entrée est invalide, entrer un nombre entre 1 et 100");
@@ -67,12 +74,9 @@
             }
 
             Console.WriteLine(userGuess < randNumber ? "Plus petit, essayer un nombre plus grand" : "Plus grand, essayer un nombre plus petit");
-        
-            if (!isFirstVersion)
-            {
-                maxTries--;
-                Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essais");
-            }
+            if (isInvinsible) return;
+            maxTries--;
+            Console.WriteLine(maxTries == 0 ? "Perdu :-(" : $"Il reste {maxTries} essais");
         }
         /// <summary>
         /// Prend l'input de fin de partie pour demander si on refait une partie ou si on retourne au menu principale
@@ -105,7 +109,23 @@
             else if (endingInput == "n" || endingInput == "N")
             {
                 isConsoleInit = false;
+                if (isInvinsible) isInvinsible = false;
             }
+        }
+        /// <summary>
+        /// Permet a l'utilisateur de tricher en entrant un code secret
+        /// </summary>
+        private void Cheat()
+        {
+            Console.WriteLine("***Enter Cheat Menu***");
+            string cheat = Console.ReadLine();
+            switch (cheat)
+            {
+                case "IDDQD": isInvinsible = true; Console.WriteLine("*Nombre d'essais infini*"); break;
+                case "IDKFA": Console.WriteLine($"*CHEAT REPONSE* : {randNumber}"); break;
+            }
+            Console.WriteLine("***Exit Cheat Menu***");
+            Console.WriteLine("\nEntrer un nombre entre 1 et 100");
         }
     }
 }
