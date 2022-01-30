@@ -123,6 +123,7 @@
             {
                 case "IDDQD": isInvinsible = true; Console.WriteLine("*Nombre d'essais infini*"); break;
                 case "IDKFA": Console.WriteLine($"*CHEAT REPONSE* : {randNumber}"); break;
+                default: Console.WriteLine("Cheat inconnu"); break;
             }
             Console.WriteLine("***Exit Cheat Menu***");
             Console.WriteLine("\nEntrer un nombre entre 1 et 100");

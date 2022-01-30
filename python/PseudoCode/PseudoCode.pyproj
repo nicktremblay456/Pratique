@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>66ced630-271e-427c-8bd4-2295f8615962</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>PseudoCode.py</StartupFile>
+    <StartupFile>Program.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -25,7 +25,6 @@
     <Compile Include="ComptageDeMot.py" />
     <Compile Include="DevineLeChiffre.py" />
     <Compile Include="Program.py" />
-    <Compile Include="PseudoCode.py" />
     <Compile Include="SaisieSansFaille.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

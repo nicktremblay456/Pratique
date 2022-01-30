@@ -15,11 +15,11 @@ class Program:
             self.__process()
 
     def __process(self):
-        print("Entrer 0, 1, 2, ou 3 pour choisir quoi faire.\n\n" +
+        print("Entrer 0, 1, 2, 3 ou 4 pour choisir quoi faire.\n\n" +
               "1: Caisse automatique\n" +
-              #"2: Comptage de mot\n" +
-              "2: Saisie sans faille\n" +
-              "3: Devine le chiffre\n" +
+              "2: Comptage de mot *En developpement*\n" +
+              "3: Saisie sans faille\n" +
+              "4: Devine le chiffre\n" +
               "0: Quitter")
         self.__getInput()
         while self.userChoice == -1:
@@ -27,8 +27,9 @@ class Program:
            
         if self.userChoice == 0: self.isRunning = False
         elif self.userChoice == 1: self.caisse.process()
-        elif self.userChoice == 2: self.saisie.process()
-        elif self.userChoice == 3: self.devine.process()
+        elif self.userChoice == 2: print("*WORK IN PROGRESS*")
+        elif self.userChoice == 3: self.saisie.process()
+        elif self.userChoice == 4: self.devine.process()
 
         if self.isRunning:
             input("\nAppuyez sur une touche pour revenir au menu principale...")
@@ -43,3 +44,6 @@ class Program:
 
         if self.userChoice == -1:
             print("La valeur entree est invalide, entrer un nombre en 0 et 3")
+
+program = Program()
+program.run()
