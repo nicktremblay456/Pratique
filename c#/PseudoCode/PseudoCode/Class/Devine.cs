@@ -4,8 +4,8 @@
     {
         #region Variables/Const
         private Random random = new Random();
-        private int minNumber, maxNumber, randNumber, userGuess, difficultyInput;
-        private bool isConsoleInit = false, isInvinsible = false;
+        private int minNumber = 1, maxNumber, randNumber, userGuess, difficultyInput;
+        private bool isConsoleInit = false, quit = false, isInvinsible = false;
         private int maxTries;
         private string endingInput = "";
         
@@ -31,16 +31,14 @@
             maxTries = MAX_TRIES;
             randNumber = random.Next(minNumber, maxNumber);
 
-            Console.WriteLine($"Entrer un nombre entre {minNumber} et {maxNumber}, vous avez droit à {MAX_TRIES} essais");
+            Console.WriteLine($"Entrer un nombre entre {minNumber} et {maxNumber - 1}, vous avez droit à {MAX_TRIES} essais");
             GetInput();
 
             while (userGuess < 1 || userGuess > 100 || userGuess != randNumber)
             {
-                if (maxTries == 0) break;
+                if (maxTries == 0 || quit) break;
                 GetInput();
             }
-
-            End();
         }
         /// <summary>
         /// Change la couleur du background de la console
@@ -49,6 +47,7 @@
         {
             Program.SetBackgroundColor(color);
             isConsoleInit = true;
+            quit = false;
         }
         /// <summary>
         /// Demande a l'utilisateur de choisir la difficultée
@@ -64,9 +63,9 @@
 
             switch (difficultyInput)
             {
-                case 1: maxNumber = 100; break;
-                case 2: maxNumber = 150; break;
-                case 3: maxNumber = 200; break;
+                case 1: maxNumber = 101; break;
+                case 2: maxNumber = 151; break;
+                case 3: maxNumber = 201; break;
             }
 
             Console.Clear();
@@ -89,7 +88,7 @@
             }
             catch
             {
-                Console.WriteLine($"La valeur entrée est invalide, entrer un nombre entre {minNumber} et {maxNumber}");
+                Console.WriteLine($"La valeur entrée est invalide, entrer un nombre entre {minNumber} et {maxNumber - 1}");
                 userGuess = 0;
                 return;
             }
@@ -116,7 +115,7 @@
 
             while (endingInput.ToLowerInvariant() != "y" && endingInput.ToLowerInvariant() != "n")
             {
-                Console.WriteLine("La valeur entrée est invalide \n Entrer 'Y' pour commencer une nouvelle partie ou 'N' pour quitter");
+                Console.WriteLine("La valeur entrée est invalide \nEntrer 'Y' pour commencer une nouvelle partie ou 'N' pour quitter");
                 GetEndingInput();
             }
         }
@@ -130,7 +129,6 @@
             if (endingInput.ToLowerInvariant() == "y")
             {
                 maxTries = MAX_TRIES;
-                endingInput = "";
                 Console.Clear();
                 Process();
             }
@@ -138,7 +136,7 @@
             {
                 isConsoleInit = false;
                 if (isInvinsible) isInvinsible = false;
-                difficultyInput = 0;
+                quit = true;
             }
         }
         /// <summary>
