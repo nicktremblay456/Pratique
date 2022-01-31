@@ -3,14 +3,17 @@ import random
 class DevineLeChiffre:
     def __init__(self):
         self.minNumber = 1
-        self.maxNumber = 100
+        self.maxNumber = 0
 
         self.randNumber = 0
         self.userGuess = 0
         self.difficultyInput = 0
         self.maxTries = 10
+
         self.endingInput = ""
+
         self.isInvinsible = False
+        self.quit = False
 
     def process(self):
         self.__setDifficulty()
@@ -23,7 +26,7 @@ class DevineLeChiffre:
         self.__getInput()
 
         while self.userGuess < 1 or self.userGuess > 100 or self.userGuess != self.randNumber:
-            if self.maxTries == 0: break
+            if self.maxTries == 0 or self.quit: break
             self.__getInput()
 
     def __getInput(self):
@@ -76,12 +79,10 @@ class DevineLeChiffre:
         self.endingInput = input()
         if self.endingInput.lower() == "y":
             self.maxTries = 10
-            self.endingInput = ""
-            self.difficultyInput = 0
             self.process()
         elif self.endingInput.lower() == "n":
             if self.isInvinsible: self.isInvinsible = False
-            self.difficultyInput = 0
+            self.quit = False
 
     def __cheat(self):
         print("***Enter Cheat Menu***\n")
