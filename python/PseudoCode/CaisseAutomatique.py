@@ -47,15 +47,15 @@ class CaisseAutomatique:
     def __end(self):
         print("Transaction terminee.\nEntrer 'y' pour passer au client suivant ou 'n' pour arreter et retourner au menu principale")
         self.__getEndingInput()
-        while self.endingInput != "y" and self.endingInput != "Y" and self.endingInput != "n" and self.endingInput != "N":
+        while self.endingInput.lower() != "y" and self.endingInput.lower() != "n":
             print("La valeur entree est invalide \nEntrer 'y' pour passer au client suivant ou 'n' pour quitter")
             self.__getEndingInput()
 
     def __getEndingInput(self):
         self.endingInput = input()
 
-        if self.endingInput == "y" or self.endingInput == "Y":
+        if self.endingInput.lower() == "y":
             print("Client suivant...")
             self.currentClient+=1
-        elif self.endingInput == "n" or self.endingInput == "N":
+        elif self.endingInput.lower() == "n":
             self.isRunning = False

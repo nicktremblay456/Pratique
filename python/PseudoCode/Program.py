@@ -37,10 +37,9 @@ class Program:
     def __getInput(self):
         try:
             self.userChoice = int(input())
-            if self.userChoice > 3 or self.userChoice < 0:
+            if self.userChoice > 4 or self.userChoice < 0:
                 self.userChoice = -1
-        except:
-            self.userChoice = -1
+        except: self.userChoice = -1
 
         if self.userChoice == -1:
             print("La valeur entree est invalide, entrer un nombre en 0 et 3")
