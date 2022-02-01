@@ -3,8 +3,8 @@
     public class Caisse
     {
         #region Variables/Const
-        protected float client, price;
-        protected bool isConsoleInit = false, isRunning = true;
+        private float client, price;
+        private bool isConsoleInit = false, isRunning = true;
         private int currentClient = 1;
         private string endingInput = "";
 

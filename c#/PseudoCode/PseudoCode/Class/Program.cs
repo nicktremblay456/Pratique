@@ -68,7 +68,7 @@ public static class Program
         }
     }
     /// <summary>
-    /// Permet de cjanger la couleur du background de la console.
+    /// Permet de changer la couleur du background de la console.
     /// </summary>
     /// <param name="color">La couleure qu'on veut utiliser</param>
     public static void SetBackgroundColor(ConsoleColor color)

@@ -3,6 +3,7 @@
 <head>
   <title>Basic Tetris HTML Game</title>
   <meta charset="UTF-8">
+  
   <style>
   html, body {
     height: 100%;
@@ -60,10 +61,10 @@
   </style>
 </head>
 <body>
-<div horizontal layout>
-<h1 id="score" class="border-glow" style="position: absolute; top: 0px; left: 150px; margin-right: 25px; ">Score: 0</h1>
-<h1 id="level" class="border-glow" style="position: absolute; top: 50px; left: 150px; margin-right: 25px; ">Level: 0</h1>
-<h1 id="lines" class="border-glow" style="position: absolute; top: 100px; left: 150px; margin-right: 25px; ">Lines: 0</h1>
+<div horizontal layout width="100%" heigth="100%">
+<h1 id="score" class="border-glow" style="font-size:3vw; position: absolute; top: 0%; left: 0%; margin-right: 25%; ">Score: 0</h1>
+<h1 id="level" class="border-glow" style="font-size:3vw; position: absolute; top: 10%; left: 0%; margin-right: 25%; ">Level: 0</h1>
+<h1 id="lines" class="border-glow" style="font-size:3vw; position: absolute; top: 20%; left: 0%; margin-right: 25%; ">Lines: 0</h1>
 <canvas class="border-glow" width="320" height="640" id="game"></canvas>
 <script>
 // https://tetris.fandom.com/wiki/Tetris_Guideline

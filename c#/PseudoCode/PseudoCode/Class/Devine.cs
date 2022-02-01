@@ -4,13 +4,14 @@
     {
         #region Variables/Const
         private Random random = new Random();
-        private int minNumber = 1, maxNumber, randNumber, userGuess, difficultyInput;
+        
+        private int minNumber = 1, maxNumber, randNumber, userGuess, maxTries;
         private bool isConsoleInit = false, quit = false, isInvinsible = false;
-        private int maxTries;
         private string endingInput = "";
-        
+
+        private Difficulty difficultyChoice = Difficulty.NONE;
         private ConsoleColor color = ConsoleColor.DarkMagenta;
-        
+
         private const int MAX_TRIES = 10;
         #endregion
 
@@ -23,7 +24,7 @@
                 SetConsole();
 
             SetDifficulty();
-            while (difficultyInput == 0)
+            while (difficultyChoice == Difficulty.NONE)
             {
                 SetDifficulty();
             }
@@ -58,14 +59,20 @@
                               "1: Facile\n" +
                               "2: Moyen\n" +
                               "3: Difficile\n");
-            try { difficultyInput = int.Parse(Console.ReadLine()); }
-            catch { difficultyInput = 0; }
+            try 
+            { 
+                difficultyChoice = (Difficulty)int.Parse(Console.ReadLine());
+                if (difficultyChoice <= Difficulty.NONE || difficultyChoice >= Difficulty.Count)
+                    difficultyChoice = Difficulty.NONE;
+            }
+            catch { difficultyChoice = 0; }
 
-            switch (difficultyInput)
+            switch (difficultyChoice)
             {
-                case 1: maxNumber = 101; break;
-                case 2: maxNumber = 151; break;
-                case 3: maxNumber = 201; break;
+                case Difficulty.FACILE: maxNumber = 101; break;
+                case Difficulty.MOYEN: maxNumber = 151; break;
+                case Difficulty.DIFFICILE: maxNumber = 201; break;
+                default: break;
             }
 
             Console.Clear();
@@ -76,8 +83,8 @@
         /// </summary>
         private void GetInput()
         {
-            try 
-            { 
+            try
+            {
                 userGuess = int.Parse(Console.ReadLine());
                 if (userGuess == -1)// Cheat code commande
                 {
@@ -148,13 +155,12 @@
             string cheat = Console.ReadLine();
             switch (cheat)
             {
-                case "iddqd":
-                case "IDDQD": isInvinsible = true; Console.WriteLine("*Nombre d'essais infini*\n"); break;
-                case "idkfa":
-                case "IDKFA": Console.WriteLine($"*CHEAT REPONSE* : {randNumber}\n"); break;
+                case "iddqd": case "IDDQD": isInvinsible = true; Console.WriteLine("*Nombre d'essais infini*\n"); break;
+                case "idkfa": case "IDKFA": Console.WriteLine($"*CHEAT REPONSE* : {randNumber}\n"); break;
+                case "idfa": case "IDFA": maxTries = MAX_TRIES; Console.WriteLine("Nombre d'essais réinitialiser a 10\n"); break;
                 default: Console.WriteLine("Cheat inconnu\n"); break;
             }
-            Console.WriteLine($"***Exit Cheat Menu***\n\nEntrer un nombre entre {minNumber} et {maxNumber}");
+            Console.WriteLine($"***Exit Cheat Menu***\n\nEntrer un nombre entre {minNumber} et {maxNumber - 1}");
         }
     }
 }

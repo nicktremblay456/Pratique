@@ -90,7 +90,9 @@ class DevineLeChiffre:
         if cheat.lower() == "iddqd":
             self.isInvinsible = True
             print("*Nombre d'essais infini*\n")
-        elif cheat.lower() == "idkfa":
-            print(f"*CHEAT REPONSE* : {self.randNumber}\n")
+        elif cheat.lower() == "idkfa": print(f"*CHEAT REPONSE* : {self.randNumber}\n")
+        elif cheat.lower() == "idfa":
+            self.maxTries = 10
+            print("Nombre d'essais réinitialiser a 10\n")
         else: print("Cheat inconnu\n")
         print(f"***Exit Cheat Menu***\n\nEntrer un nombre entre {self.minNumber} et {self.maxNumber}")
