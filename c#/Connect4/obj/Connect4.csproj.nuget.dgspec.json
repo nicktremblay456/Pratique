@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\TicTacToe\\CodeWars.csproj": {}
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\Connect4\\Connect4.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\TicTacToe\\CodeWars.csproj": {
+    "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\Connect4\\Connect4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\TicTacToe\\CodeWars.csproj",
-        "projectName": "CodeWars",
-        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\TicTacToe\\CodeWars.csproj",
+        "projectUniqueName": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\Connect4\\Connect4.csproj",
+        "projectName": "Connect4",
+        "projectPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\Connect4\\Connect4.csproj",
         "packagesPath": "C:\\Users\\Nick_\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\TicTacToe\\obj\\",
+        "outputPath": "C:\\Users\\Nick_\\OneDrive\\Bureau\\Pratique\\c#\\Connect4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Nick_\\AppData\\Roaming\\NuGet\\NuGet.Config",
