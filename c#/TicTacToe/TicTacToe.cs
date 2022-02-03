@@ -121,109 +121,30 @@
 
     private bool VictoryCondition()
     {
-        #region Column A
-        if (board[0][0] == joueur_X && board[1][0] == joueur_X && board[2][0] == joueur_X)
+        if ((board[0][0] == joueur_X && board[1][0] == joueur_X && board[2][0] == joueur_X) ||
+            (board[0][1] == joueur_X && board[1][1] == joueur_X && board[2][1] == joueur_X) ||
+            (board[0][2] == joueur_X && board[1][2] == joueur_X && board[2][2] == joueur_X) ||
+            (board[0][0] == joueur_X && board[0][1] == joueur_X && board[0][2] == joueur_X) ||
+            (board[1][0] == joueur_X && board[1][1] == joueur_X && board[1][2] == joueur_X) ||
+            (board[2][0] == joueur_X && board[2][1] == joueur_X && board[2][2] == joueur_X) ||
+            (board[0][0] == joueur_X && board[1][1] == joueur_X && board[2][2] == joueur_X) ||
+            (board[0][2] == joueur_X && board[1][1] == joueur_X && board[2][0] == joueur_X))
         {
             Console.WriteLine("Joueur X gagne!");
             return true;
         }
-        else if (board[0][0] == joueur_O && board[1][0] == joueur_O && board[2][0] == joueur_O)
+        else if ((board[0][0] == joueur_O && board[1][0] == joueur_O && board[2][0] == joueur_O) ||
+                (board[0][1] == joueur_O && board[1][1] == joueur_O && board[2][1] == joueur_O) ||
+                (board[0][2] == joueur_O && board[1][2] == joueur_O && board[2][2] == joueur_O) ||
+                (board[0][0] == joueur_O && board[0][1] == joueur_O && board[0][2] == joueur_O) ||
+                (board[1][0] == joueur_O && board[1][1] == joueur_O && board[1][2] == joueur_O) ||
+                (board[2][0] == joueur_O && board[2][1] == joueur_O && board[2][2] == joueur_O) ||
+                (board[0][0] == joueur_O && board[1][1] == joueur_O && board[2][2] == joueur_O) ||
+                (board[0][2] == joueur_O && board[1][1] == joueur_O && board[2][0] == joueur_O))
         {
             Console.WriteLine("Joueur O gagne!");
             return true;
         }
-        #endregion
-
-        #region Column B
-        if (board[0][1] == joueur_X && board[1][1] == joueur_X && board[2][1] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[0][1] == joueur_O && board[1][1] == joueur_O && board[2][1] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Column C
-        if (board[0][2] == joueur_X && board[1][2] == joueur_X && board[2][2] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[0][2] == joueur_O && board[1][2] == joueur_O && board[2][2] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Row 1
-        if (board[0][0] == joueur_X && board[0][1] == joueur_X && board[0][2] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[0][0] == joueur_O && board[0][1] == joueur_O && board[0][2] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Row 2
-        if (board[1][0] == joueur_X && board[1][1] == joueur_X && board[1][2] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[1][0] == joueur_O && board[1][1] == joueur_O && board[1][2] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Row 3
-        if (board[2][0] == joueur_X && board[2][1] == joueur_X && board[2][2] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[2][0] == joueur_O && board[2][1] == joueur_O && board[2][2] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Diagonal Left -> Right
-        if (board[0][0] == joueur_X && board[1][1] == joueur_X && board[2][2] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[0][0] == joueur_O && board[1][1] == joueur_O && board[2][2] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
-
-        #region Diagonal Right -> Left
-        if (board[0][2] == joueur_X && board[1][1] == joueur_X && board[2][0] == joueur_X)
-        {
-            Console.WriteLine("Joueur X gagne!");
-            return true;
-        }
-        else if (board[0][2] == joueur_O && board[1][1] == joueur_O && board[2][0] == joueur_O)
-        {
-            Console.WriteLine("Joueur O gagne!");
-            return true;
-        }
-        #endregion
 
         return false;
     }
@@ -231,10 +152,9 @@
 
 public class Game
 {
-    private static TicTacToe game = new TicTacToe();
-
     private static void Main(string[] args)
     {
+        TicTacToe game = new TicTacToe();
         game.GameLoop();
     }
 }
