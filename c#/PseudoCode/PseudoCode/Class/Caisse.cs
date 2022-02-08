@@ -23,16 +23,16 @@
 
             while (isRunning)
             {
-                GetInput(true, $"Entrer le prix du produit pour le client {currentClient}");
+                GetInput(ref price, $"Entrer le prix du produit pour le client {currentClient}");
                 while (price <= 0)
                 {
-                    GetInput(true, "Prix invalide, entrez un prix plus grand que 0...");
+                    GetInput(ref price, "Prix invalide, entrez un prix plus grand que 0...");
                 }
 
-                GetInput(false, $"Entrer le montant d'argent que vous voulez que le client {currentClient} donne");
+                GetInput(ref client, $"Entrer le montant d'argent que vous voulez que le client {currentClient} donne");
                 while (client <= 0)
                 {
-                    GetInput(false, "Le montant du client est invalide, entrez un montant plus grand que 0...");
+                    GetInput(ref client, "Le montant du client est invalide, entrez un montant plus grand que 0...");
                 }
 
                 // Utiliser le while loop si on veut que l'utilisateur entre le montant restant a payer lui même.
@@ -67,22 +67,16 @@
         /// </summary>
         /// <param name="priceCheck">Mettre a true quand on veut assigner une value a la variable prix si non mettre faux pour le montant du client</param>
         /// <param name="message">Le message a afficher selon la situation</param>
-        private void GetInput(bool priceCheck, string message)
+        private void GetInput(ref float value, string message)
         {
             Console.WriteLine(message);
             try
             {
-                if (priceCheck)
-                    price = float.Parse(Console.ReadLine());
-                else
-                    client = float.Parse(Console.ReadLine());
+                value = float.Parse(Console.ReadLine());
             }
             catch
             {
-                if (priceCheck)
-                    price = 0.0f;
-                else
-                    client = 0.0f;
+                value = 0f;
             }
         }
         /// <summary>
