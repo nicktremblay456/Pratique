@@ -38,7 +38,7 @@
         /// </summary>
         private void SetConsole()
         {
-            Program.SetBackgroundColor(color);
+            PseudoCode.SetBackgroundColor(color);
             isConsoleInit = true;
         }
     }

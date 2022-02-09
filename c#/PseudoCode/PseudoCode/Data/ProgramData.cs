@@ -2,10 +2,10 @@
 {
     public struct ProgramData
     {
-        public Caisse Caisse { get; private set; }
-        public ComptageDeMot Comptage { get; private set; }
-        public SaisieSansFaille Saisie { get; private set; }
-        public Devine Devine { get; private set; }
+        public readonly Caisse Caisse;
+        public readonly ComptageDeMot Comptage;
+        public readonly SaisieSansFaille Saisie;
+        public readonly Devine Devine;
 
         public ProgramData()
         {

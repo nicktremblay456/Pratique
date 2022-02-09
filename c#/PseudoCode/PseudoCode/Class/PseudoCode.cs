@@ -1,6 +1,6 @@
 ﻿using TNT;
 
-public static class Program
+public static class PseudoCode
 {
     private static ProgramData data = new ProgramData();// Data structure qui contient les sous programmes
     private static Option userChoice = Option.NONE;// un enum...
